@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Pullquote</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Hidden element to preload Fraunces with variation settings -->
+  <div class="fraunces" style="position: absolute; visibility: hidden; font-size: 40px;">Preload</div>
+
+  <div id="app">
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+      <p>Generating quote card...</p>
+    </div>
+
+    <div id="preview" class="hidden">
+      <div id="card-preview"></div>
+
+      <div class="controls">
+        <div class="selectors-row">
+          <div class="selector-group">
+            <label>Theme</label>
+            <select id="theme-select">
+              <!-- Populated dynamically from themes.json -->
+            </select>
+          </div>
+          <div class="selector-group">
+            <label>Format</label>
+            <select id="aspect-select">
+              <option value="square">Square</option>
+              <option value="portrait">Portrait</option>
+              <option value="landscape">Landscape</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="copy-btn" class="btn btn-secondary">Copy to Clipboard</button>
+        <button id="save-btn" class="btn btn-primary">Download</button>
+      </div>
+    </div>
+
+    <div id="empty-state" class="hidden">
+      <div class="empty-state">
+        <svg class="empty-state-icon" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="12" width="40" height="32" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/>
+          <line x1="14" y1="22" x2="42" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="14" y1="30" x2="36" y2="30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="14" y1="38" x2="28" y2="38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="32" y="26" width="14" height="16" rx="2" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <h3 class="empty-state-title">No Text Selected</h3>
+        <p class="empty-state-description">Select some text on the page, then click the Pullquote icon to create a beautiful quote card.</p>
+      </div>
+      <button id="close-btn" class="btn btn-secondary">Close</button>
+    </div>
+
+    <div id="error" class="hidden">
+      <p class="error-message"></p>
+      <button id="retry-btn" class="btn btn-secondary">Close</button>
+    </div>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

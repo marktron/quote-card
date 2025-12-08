@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light dark;
+  --accent: -apple-system-control-accent;
+  --accent-hover: -apple-system-control-accent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", system-ui, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  width: 480px;
+  height: 520px;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1c1c1e;
+    color: #f5f5f7;
+  }
+}
+
+#app {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Loading */
+#loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 16px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e0e0e0;
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .spinner {
+    border-color: #3a3a3c;
+    border-top-color: var(--accent);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.card-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+/* Preview */
+#preview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+#card-preview {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  #card-preview {
+    background: #2c2c2e;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+#card-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .controls {
+    background: #2c2c2e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.selectors-row {
+  display: flex;
+  gap: 12px;
+}
+
+.selector-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.controls label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #86868b;
+}
+
+.controls select {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #d2d2d7;
+  border-radius: 8px;
+  font-size: 13px;
+  background: white;
+  color: #1d1d1f;
+  cursor: pointer;
+}
+
+.controls select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .controls label {
+    color: #98989d;
+  }
+
+  .controls select {
+    background: #3a3a3c;
+    border-color: #48484a;
+    color: #f5f5f7;
+  }
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+
+.btn-secondary:hover {
+  background: #f0f0f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn-secondary {
+    background: #2c2c2e;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .btn-secondary:hover {
+    background: #3a3a3c;
+  }
+}
+
+/* Empty State & Error */
+#empty-state,
+#error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+}
+
+#empty-state .btn,
+#error .btn {
+  padding: 8px 24px;
+  flex: none;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.empty-state-icon {
+  color: #86868b;
+  margin-bottom: 8px;
+}
+
+.empty-state-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.empty-state-description {
+  font-size: 14px;
+  color: #86868b;
+  line-height: 1.5;
+  max-width: 280px;
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .empty-state-icon {
+    color: #98989d;
+  }
+
+  .empty-state-title {
+    color: #f5f5f7;
+  }
+
+  .empty-state-description {
+    color: #98989d;
+  }
+}
+
+/* Legacy error message (for actual errors) */
+.error-message {
+  color: #ff3b30;
+  font-size: 15px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .error-message {
+    color: #ff453a;
+  }
+}
+
+/* Font variation settings for Fraunces */
+.fraunces {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "SOFT" 50,
+    "WONK" 1;
+}
