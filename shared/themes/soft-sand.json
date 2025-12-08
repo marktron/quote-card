@@ -1,0 +1,21 @@
+{
+  "id": "soft-sand",
+  "name": "Soft Sand",
+  "fontFamily": "SF Pro Display",
+  "background": {
+    "type": "solid",
+    "color": "#FAF8F5"
+  },
+  "text": {
+    "size": 40,
+    "color": "#181818",
+    "lineHeight": 1.4,
+    "maxWidth": "80%"
+  },
+  "padding": 80,
+  "footer": {
+    "enabled": true,
+    "color": "#666666",
+    "opacity": 0.7
+  }
+}
