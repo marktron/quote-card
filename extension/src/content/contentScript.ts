@@ -284,7 +284,7 @@ browser.runtime.onMessage.addListener(
       const isJpeg = dataUrl.startsWith("data:image/jpeg");
       const extension = isJpeg ? "jpg" : "png";
 
-      let filename = "pullquote";
+      let filename = "quotecard";
       const sourceTitle = msg.payload?.sourceTitle;
       if (sourceTitle) {
         const attribution = sourceTitle
@@ -293,12 +293,12 @@ browser.runtime.onMessage.addListener(
           .toLowerCase()
           .slice(0, 50);
         if (attribution) {
-          filename = `pullquote-${attribution}-${timestamp}.${extension}`;
+          filename = `quotecard-${attribution}-${timestamp}.${extension}`;
         } else {
-          filename = `pullquote-${timestamp}.${extension}`;
+          filename = `quotecard-${timestamp}.${extension}`;
         }
       } else {
-        filename = `pullquote-${timestamp}.${extension}`;
+        filename = `quotecard-${timestamp}.${extension}`;
       }
 
       const link = document.createElement("a");

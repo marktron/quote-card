@@ -1,11 +1,11 @@
 {
-  "name": "pullquote-extension",
+  "name": "quotecard-extension",
   "version": "1.0.0",
-  "description": "Pullquote Safari WebExtension",
+  "description": "QuoteCard Safari WebExtension",
   "scripts": {
     "build": "tsc && npm run copy-assets && npm run sync-xcode",
     "copy-assets": "cp -r public/* dist/ && cp src/popup/*.html dist/popup/ && cp src/popup/*.css dist/popup/",
-    "sync-xcode": "cp -r dist/* '../app/Pullquote/Pullquote Extension/'",
+    "sync-xcode": "cp -r dist/* '../app/QuoteCard/QuoteCard Extension/'",
     "watch": "tsc --watch",
     "clean": "rm -rf dist",
     "lint": "eslint src/**/*.ts",

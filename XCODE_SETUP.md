@@ -1,6 +1,6 @@
 # Xcode Project Setup Guide
 
-This guide will walk you through creating the Xcode project for Pullquote.
+This guide will walk you through creating the Xcode project for QuoteCard.
 
 ## Step 1: Create the Xcode Project with Safari Extension
 
@@ -8,14 +8,14 @@ This guide will walk you through creating the Xcode project for Pullquote.
 2. File → New → Project
 3. Select "macOS" → **"Safari Extension App"** (not just "App")
 4. Configure the project:
-   - **Product Name:** Pullquote
+   - **Product Name:** QuoteCard
    - **Team:** (your team)
    - **Organization Identifier:** (your identifier, e.g., com.yourname)
-   - **Bundle Identifier:** (auto-generated, e.g., com.yourname.Pullquote)
+   - **Bundle Identifier:** (auto-generated, e.g., com.yourname.QuoteCard)
    - **Interface:** SwiftUI
    - **Language:** Swift
    - **Include Tests:** Optional
-5. Save the project in: `/Users/mark/Developer/pullquote/app/`
+5. Save the project in: `/Users/mark/Developer/quotecard/app/`
 
 **Note:** Using "Safari Extension App" automatically creates both the host app AND the extension target, so we don't need to add a separate extension target.
 
@@ -25,48 +25,48 @@ After project creation, Xcode will have created template files. We'll replace th
 
 ### A. Replace Host App Files
 
-1. In Xcode Project Navigator, expand the **Pullquote** group
+1. In Xcode Project Navigator, expand the **QuoteCard** group
 2. Delete these auto-generated files (Move to Trash):
    - `ContentView.swift` (we have our own)
-   - `PullquoteApp.swift` (we have our own)
-3. Right-click **Pullquote** group → **Add Files to "Pullquote"**
-4. Navigate to `/Users/mark/Developer/pullquote/app/Pullquote/`
+   - `QuoteCardApp.swift` (we have our own)
+3. Right-click **QuoteCard** group → **Add Files to "QuoteCard"**
+4. Navigate to `/Users/mark/Developer/quotecard/app/QuoteCard/`
 5. Select all `.swift` files:
-   - `PullquoteApp.swift`
+   - `QuoteCardApp.swift`
    - `ContentView.swift`
    - `SettingsView.swift`
    - `RenderTypes.swift`
    - `ThemeRegistry.swift`
    - `QuoteCardRenderer.swift`
 6. **Important:** Uncheck "Copy items if needed" (we want to reference the originals)
-7. Add to target: **Pullquote** (main app target)
+7. Add to target: **QuoteCard** (main app target)
 8. Click Add
 
 ### B. Replace Extension Files
 
-1. Expand the **Pullquote Extension** group (or whatever Xcode named it)
+1. Expand the **QuoteCard Extension** group (or whatever Xcode named it)
 2. Look for the auto-generated extension resources folder (usually contains manifest.json, etc.)
 3. Delete all auto-generated extension files
-4. Right-click **Pullquote Extension** → **Add Files to "Pullquote"**
-5. Navigate to `/Users/mark/Developer/pullquote/extension/dist/`
+4. Right-click **QuoteCard Extension** → **Add Files to "QuoteCard"**
+5. Navigate to `/Users/mark/Developer/quotecard/extension/dist/`
 6. Select all files and folders (manifest.json, background/, content/, popup/, etc.)
 7. Check **"Create folder references"** (blue folders, not yellow groups)
 8. Uncheck "Copy items if needed"
-9. Add to target: **Pullquote Extension**
+9. Add to target: **QuoteCard Extension**
 10. Click Add
 
 ## Step 3: Verify Extension Info.plist (Optional)
 
 The Safari Extension App template should have configured this correctly, but verify:
 
-1. In Project Navigator, find **Pullquote Extension** → **Info.plist**
+1. In Project Navigator, find **QuoteCard Extension** → **Info.plist**
 2. Expand the `NSExtension` dictionary
 3. Verify `NSExtensionPointIdentifier` is set to: `com.apple.Safari.web-extension`
 4. This should already be correct from the template
 
 ## Step 4: Configure Signing & Capabilities
 
-For both targets (Pullquote and Pullquote Extension):
+For both targets (QuoteCard and QuoteCard Extension):
 
 1. Select the target from the target list
 2. Go to **Signing & Capabilities** tab
@@ -77,19 +77,19 @@ For both targets (Pullquote and Pullquote Extension):
 
 ## Step 5: Build and Run
 
-1. Select the **"Pullquote"** scheme from the scheme selector
+1. Select the **"QuoteCard"** scheme from the scheme selector
 2. Product → Run (or **Cmd+R**)
-3. The Pullquote app should launch with a welcome screen
+3. The QuoteCard app should launch with a welcome screen
 4. Keep the app running
 5. Open Safari
 6. Go to Safari → Settings (or Preferences) → Extensions
-7. Find **"Pullquote"** and enable it
+7. Find **"QuoteCard"** and enable it
 
 ## Step 6: Test the Extension
 
 1. In Safari, navigate to any webpage with text (try a blog post or news article)
 2. Select some text (a sentence or paragraph)
-3. Right-click → "Create Pullquote"
+3. Right-click → "Create QuoteCard"
 4. A popup should open with a preview of your quote card
 5. Try the controls:
    - Change aspect ratio (square/portrait/landscape)
@@ -101,11 +101,11 @@ For both targets (Pullquote and Pullquote Extension):
 ## Troubleshooting
 
 **Extension doesn't appear in Safari:**
-- Make sure the Pullquote app is still running
+- Make sure the QuoteCard app is still running
 - Try quitting and restarting Safari
 - Check Safari → Settings → Extensions
 
-**Context menu doesn't show "Create Pullquote":**
+**Context menu doesn't show "Create QuoteCard":**
 - Make sure you've selected text first
 - The menu item only appears when text is selected
 

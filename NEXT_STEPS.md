@@ -26,8 +26,8 @@ Follow the detailed guide in `XCODE_SETUP.md`:
 
 1. Open Xcode and create a new macOS App project
 2. Add Safari Web Extension target
-3. Import the Swift files from `app/Pullquote/`:
-   - `PullquoteApp.swift`
+3. Import the Swift files from `app/QuoteCard/`:
+   - `QuoteCardApp.swift`
    - `ContentView.swift`
    - `SettingsView.swift`
    - `RenderTypes.swift`
@@ -41,12 +41,12 @@ Follow the detailed guide in `XCODE_SETUP.md`:
 Once the Xcode project is set up:
 
 1. Build and run the project
-2. The Pullquote app will launch
+2. The QuoteCard app will launch
 3. Go to Safari → Preferences → Extensions
-4. Enable "Pullquote"
+4. Enable "QuoteCard"
 5. Navigate to any webpage
 6. Select some text
-7. Right-click → "Create Pullquote"
+7. Right-click → "Create QuoteCard"
 8. The popup should open with a **mock preview** (HTML canvas rendering)
 
 **Note:** At this stage, the extension uses a mock JavaScript renderer, not the Swift renderer yet. This lets you test the UI flow.
@@ -66,8 +66,8 @@ I can help with this in the next session once you have the Xcode project working
 
 Try these test cases with the mock renderer:
 
-1. **Short quote:** Select a single sentence → Create Pullquote
-2. **Long quote:** Select a full paragraph → Create Pullquote
+1. **Short quote:** Select a single sentence → Create QuoteCard
+2. **Long quote:** Select a full paragraph → Create QuoteCard
 3. **Aspect ratios:** Change between square/portrait/landscape
 4. **Attribution:** Toggle attribution on/off
 5. **Save:** Click "Save PNG" to download
@@ -75,8 +75,8 @@ Try these test cases with the mock renderer:
 
 ## Files Ready for Xcode
 
-All Swift files are ready in `app/Pullquote/`:
-- ✅ PullquoteApp.swift - Main app entry
+All Swift files are ready in `app/QuoteCard/`:
+- ✅ QuoteCardApp.swift - Main app entry
 - ✅ ContentView.swift - Welcome screen
 - ✅ SettingsView.swift - Settings panel
 - ✅ RenderTypes.swift - Type definitions

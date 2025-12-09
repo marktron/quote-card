@@ -1,6 +1,6 @@
-# Pullquote WebExtension
+# QuoteCard WebExtension
 
-This directory contains the Safari WebExtension code for Pullquote.
+This directory contains the Safari WebExtension code for QuoteCard.
 
 ## Structure
 

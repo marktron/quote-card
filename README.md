@@ -1,4 +1,4 @@
-# Pullquote
+# QuoteCard
 
 A premium Safari extension for generating beautiful, shareable quote images from selected webpage text.
 
@@ -23,7 +23,7 @@ Next steps:
 ## Repository Structure
 
 ```
-pullquote/
+quotecard/
 ├── docs/                    # Product documentation
 │   ├── PRD.md              # Product requirements
 │   └── technical-plan.md   # Technical implementation guide
@@ -37,7 +37,7 @@ pullquote/
 │   │   └── manifest.json   # Extension manifest
 │   └── dist/               # Built extension (generated)
 ├── app/                    # macOS host app (Swift/SwiftUI)
-│   └── Pullquote/          # Swift source files
+│   └── QuoteCard/          # Swift source files
 ├── shared/                 # Shared resources
 │   └── themes/             # Theme definitions
 ├── XCODE_SETUP.md         # Xcode project setup guide
@@ -84,7 +84,7 @@ Follow the detailed guide in [`XCODE_SETUP.md`](./XCODE_SETUP.md) to:
 ### Running the Extension
 
 1. Build both the WebExtension and the Xcode project
-2. Run the Pullquote app from Xcode
+2. Run the QuoteCard app from Xcode
 3. Enable the extension in Safari → Preferences → Extensions
 4. Test on any webpage with selectable text
 
@@ -117,7 +117,7 @@ Follow the detailed guide in [`XCODE_SETUP.md`](./XCODE_SETUP.md) to:
 ## Current Features
 
 - ✅ Text selection from any webpage
-- ✅ Context menu integration ("Create Pullquote")
+- ✅ Context menu integration ("Create QuoteCard")
 - ✅ Keyboard shortcut (⇧⌘Q)
 - ✅ Interactive popup with live preview
 - ✅ Mock canvas renderer (for testing UI)

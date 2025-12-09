@@ -1,4 +1,4 @@
-# Pullquote Technical Implementation Guide
+# QuoteCard Technical Implementation Guide
 
 ## 0. High-level architecture
 
@@ -134,7 +134,7 @@ Use Safari-compatible WebExtension manifest v2 (v3 support is still evolving).
 ```json
 {
   "manifest_version": 2,
-  "name": "Pullquote",
+  "name": "QuoteCard",
   "version": "1.0.0",
   "description": "Create shareable images from selected text.",
   "permissions": ["contextMenus", "activeTab", "tabs", "storage"],
@@ -143,11 +143,11 @@ Use Safari-compatible WebExtension manifest v2 (v3 support is still evolving).
     "persistent": false
   },
   "browser_action": {
-    "default_title": "Create Pullquote",
+    "default_title": "Create QuoteCard",
     "default_popup": "popup.html"
   },
   "commands": {
-    "create-pullquote": {
+    "create-quotecard": {
       "suggested_key": {
         "default": "Shift+Command+Q"
       },
@@ -218,19 +218,19 @@ browser.runtime.onMessage.addListener((msg, _sender) => {
 
 ```ts
 browser.contextMenus.create({
-  id: "create-pullquote",
-  title: "Create Pullquote",
+  id: "create-quotecard",
+  title: "Create QuoteCard",
   contexts: ["selection"]
 });
 
 browser.contextMenus.onClicked.addListener(async (info, tab) => {
-  if (info.menuItemId === "create-pullquote" && tab?.id != null) {
+  if (info.menuItemId === "create-quotecard" && tab?.id != null) {
     await handleCreateQuote(tab.id);
   }
 });
 
 browser.commands.onCommand.addListener(async (command) => {
-  if (command === "create-pullquote") {
+  if (command === "create-quotecard") {
     const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
     if (tab?.id != null) {
       await handleCreateQuote(tab.id);
@@ -690,4 +690,4 @@ Test across:
 3. Archive and distribute via Mac App Store.
    - App bundle includes host app + Safari Web Extension.
 4. On first run:
-   - Show onboarding: "Open Safari → Preferences → Extensions → Enable Pullquote."
+   - Show onboarding: "Open Safari → Preferences → Extensions → Enable QuoteCard."

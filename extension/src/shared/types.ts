@@ -1,4 +1,4 @@
-// Shared types for Pullquote extension
+// Shared types for QuoteCard extension
 // These types must be kept in sync with Swift Codable structs
 
 export type AspectRatio = "square" | "portrait" | "landscape";
@@ -98,7 +98,8 @@ export type MessageType =
   | "RENDER_REQUEST_RELAY"
   | "COPY_REQUEST"
   | "COPY_REQUEST_RELAY"
-  | "SAVE_REQUEST_RELAY";
+  | "SAVE_REQUEST_RELAY"
+  | "CONTEXT_MENU_CLICKED";
 
 export interface BaseMessage {
   type: MessageType;

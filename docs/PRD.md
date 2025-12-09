@@ -1,6 +1,6 @@
-# PRD: Pullquote Safari Extension
+# PRD: QuoteCard Safari Extension
 
-Pullquote is a premium Safari extension for generating beautiful, shareable quote images from selected webpage text.
+QuoteCard is a premium Safari extension for generating beautiful, shareable quote images from selected webpage text.
 
 ---
 
@@ -83,7 +83,7 @@ These users want speed + consistency, and dislike manually building quote cards 
 ### UC1 — Create a shareable image from highlighted text
 
 1. User highlights text.
-2. Right-click → "Create Pullquote" OR toolbar click.
+2. Right-click → "Create QuoteCard" OR toolbar click.
 3. A small modal opens with a preview.
 4. User selects theme → export.
 
@@ -167,7 +167,7 @@ Architecture must allow:
 ### Flow A: Highlight → Quote
 
 - User highlights text
-- Right-click context menu → "Create Pullquote"
+- Right-click context menu → "Create QuoteCard"
 - Modal appears centered over Safari window
 - Live preview card
 - User selects theme from horizontal theme selector
