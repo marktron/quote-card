@@ -17,11 +17,11 @@ struct ContentView: View {
                 .frame(width: 80, height: 80)
                 .foregroundColor(.accentColor)
 
-            Text("QuoteCard")
+            Text("appName", tableName: "Localizable")
                 .font(.largeTitle)
                 .fontWeight(.bold)
 
-            Text("Create beautiful quote cards from selected text")
+            Text("appTagline", tableName: "Localizable")
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -31,22 +31,25 @@ struct ContentView: View {
                 .padding(.vertical)
 
             VStack(alignment: .leading, spacing: 12) {
-                HStack {
+                HStack(alignment: .top) {
                     Image(systemName: "1.circle.fill")
                         .foregroundColor(.accentColor)
-                    Text("Open Safari and enable the QuoteCard extension")
+                    Text("step1", tableName: "Localizable")
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
-                HStack {
+                HStack(alignment: .top) {
                     Image(systemName: "2.circle.fill")
                         .foregroundColor(.accentColor)
-                    Text("Select text on any webpage")
+                    Text("step2", tableName: "Localizable")
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
-                HStack {
+                HStack(alignment: .top) {
                     Image(systemName: "3.circle.fill")
                         .foregroundColor(.accentColor)
-                    Text("Right-click and choose 'Create QuoteCard'")
+                    Text("step3", tableName: "Localizable")
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             .font(.body)
@@ -54,7 +57,7 @@ struct ContentView: View {
 
             Spacer()
 
-            Button("Open Safari Extensions") {
+            Button(String(localized: "openSafariExtensions", table: "Localizable")) {
                 SFSafariApplication.showPreferencesForExtension(withIdentifier: "com.markallen.QuoteCard.Extension") { error in
                     if let error = error {
                         print("Error opening Safari extension preferences: \(error)")

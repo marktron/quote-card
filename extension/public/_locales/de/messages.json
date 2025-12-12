@@ -1,0 +1,98 @@
+{
+  "extensionName": {
+    "message": "QuoteCard",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Erstelle schöne, teilbare Zitatbilder aus ausgewähltem Text",
+    "description": "Extension description shown in browser settings"
+  },
+  "actionTitle": {
+    "message": "QuoteCard erstellen",
+    "description": "Tooltip for extension icon"
+  },
+  "loadingMessage": {
+    "message": "Zitatkarte wird erstellt...",
+    "description": "Loading state message"
+  },
+  "themeLabel": {
+    "message": "Design",
+    "description": "Label for theme selector"
+  },
+  "formatLabel": {
+    "message": "Format",
+    "description": "Label for format selector"
+  },
+  "formatSquare": {
+    "message": "Quadrat",
+    "description": "Square aspect ratio"
+  },
+  "formatPortrait": {
+    "message": "Hochformat",
+    "description": "Portrait aspect ratio"
+  },
+  "formatLandscape": {
+    "message": "Querformat",
+    "description": "Landscape aspect ratio"
+  },
+  "copyButton": {
+    "message": "In Zwischenablage kopieren",
+    "description": "Copy button label"
+  },
+  "copyingButton": {
+    "message": "Kopieren...",
+    "description": "Copy in progress"
+  },
+  "copiedButton": {
+    "message": "Kopiert!",
+    "description": "Copy success"
+  },
+  "downloadButton": {
+    "message": "Laden",
+    "description": "Download button label"
+  },
+  "savingButton": {
+    "message": "Speichern...",
+    "description": "Save in progress"
+  },
+  "savedButton": {
+    "message": "Gespeichert!",
+    "description": "Save success"
+  },
+  "emptyStateTitle": {
+    "message": "Kein Text ausgewählt",
+    "description": "Empty state title"
+  },
+  "emptyStateDescription": {
+    "message": "Wähle Text auf der Seite aus und klicke auf das QuoteCard-Symbol, um eine schöne Zitatkarte zu erstellen.",
+    "description": "Empty state instructions"
+  },
+  "closeButton": {
+    "message": "Schließen",
+    "description": "Close button label"
+  },
+  "errorConnection": {
+    "message": "Bitte lade die Seite neu und versuche es erneut",
+    "description": "Connection error message"
+  },
+  "errorTabAccess": {
+    "message": "Zugriff auf den aktuellen Tab nicht möglich",
+    "description": "Tab access error"
+  },
+  "errorRenderFailed": {
+    "message": "Zitatkarte konnte nicht erstellt werden",
+    "description": "Render error"
+  },
+  "errorCopyFailed": {
+    "message": "Kopieren in die Zwischenablage fehlgeschlagen",
+    "description": "Copy error"
+  },
+  "errorSaveFailed": {
+    "message": "Bild konnte nicht gespeichert werden",
+    "description": "Save error"
+  },
+  "errorUnexpected": {
+    "message": "Ein unerwarteter Fehler ist aufgetreten",
+    "description": "Generic error"
+  }
+}

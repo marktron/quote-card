@@ -1,0 +1,17 @@
+/* App name */
+"appName" = "QuoteCard";
+
+/* App tagline shown below the name */
+"appTagline" = "Safariでハイライトしたテキストを共有可能な引用画像に変換します。";
+
+/* Step 1 instruction */
+"step1" = "Safariで、Safari → 設定… → 機能拡張 を選択します。";
+
+/* Step 2 instruction */
+"step2" = "リストで「QuoteCard」を有効にします。";
+
+/* Step 3 instruction */
+"step3" = "ページ上のテキストをハイライトし、右クリックして「QuoteCardを作成」を選択するか、メニューバーのアイコンをクリックします。";
+
+/* Button to open Safari extension preferences */
+"openSafariExtensions" = "Safari機能拡張を開く";

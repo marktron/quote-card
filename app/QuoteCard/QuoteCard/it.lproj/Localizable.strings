@@ -1,0 +1,17 @@
+/* App name */
+"appName" = "QuoteCard";
+
+/* App tagline shown below the name */
+"appTagline" = "Trasforma il testo evidenziato in Safari in immagini di citazioni condivisibili.";
+
+/* Step 1 instruction */
+"step1" = "In Safari, scegli Safari → Impostazioni… → Estensioni.";
+
+/* Step 2 instruction */
+"step2" = "Attiva \"QuoteCard\" nell'elenco.";
+
+/* Step 3 instruction */
+"step3" = "Evidenzia del testo su una pagina, poi fai clic destro e scegli \"Crea QuoteCard\" oppure clicca sull'icona nella barra dei menu.";
+
+/* Button to open Safari extension preferences */
+"openSafariExtensions" = "Apri estensioni Safari";

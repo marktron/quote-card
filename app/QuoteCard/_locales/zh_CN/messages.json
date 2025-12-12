@@ -1,0 +1,98 @@
+{
+  "extensionName": {
+    "message": "QuoteCard",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "从选定的网页文本创建精美的可分享引用图片",
+    "description": "Extension description shown in browser settings"
+  },
+  "actionTitle": {
+    "message": "创建 QuoteCard",
+    "description": "Tooltip for extension icon"
+  },
+  "loadingMessage": {
+    "message": "正在生成卡片...",
+    "description": "Loading state message"
+  },
+  "themeLabel": {
+    "message": "主题",
+    "description": "Label for theme selector"
+  },
+  "formatLabel": {
+    "message": "格式",
+    "description": "Label for format selector"
+  },
+  "formatSquare": {
+    "message": "正方形",
+    "description": "Square aspect ratio"
+  },
+  "formatPortrait": {
+    "message": "竖版",
+    "description": "Portrait aspect ratio"
+  },
+  "formatLandscape": {
+    "message": "横版",
+    "description": "Landscape aspect ratio"
+  },
+  "copyButton": {
+    "message": "复制到剪贴板",
+    "description": "Copy button label"
+  },
+  "copyingButton": {
+    "message": "复制中...",
+    "description": "Copy in progress"
+  },
+  "copiedButton": {
+    "message": "已复制！",
+    "description": "Copy success"
+  },
+  "downloadButton": {
+    "message": "下载",
+    "description": "Download button label"
+  },
+  "savingButton": {
+    "message": "保存中...",
+    "description": "Save in progress"
+  },
+  "savedButton": {
+    "message": "已保存！",
+    "description": "Save success"
+  },
+  "emptyStateTitle": {
+    "message": "未选择文本",
+    "description": "Empty state title"
+  },
+  "emptyStateDescription": {
+    "message": "在页面上选择一些文本，然后点击 QuoteCard 图标来创建精美的引用卡片。",
+    "description": "Empty state instructions"
+  },
+  "closeButton": {
+    "message": "关闭",
+    "description": "Close button label"
+  },
+  "errorConnection": {
+    "message": "请重新加载页面并重试",
+    "description": "Connection error message"
+  },
+  "errorTabAccess": {
+    "message": "无法访问当前标签页",
+    "description": "Tab access error"
+  },
+  "errorRenderFailed": {
+    "message": "无法创建引用卡片",
+    "description": "Render error"
+  },
+  "errorCopyFailed": {
+    "message": "无法复制到剪贴板",
+    "description": "Copy error"
+  },
+  "errorSaveFailed": {
+    "message": "无法保存图片",
+    "description": "Save error"
+  },
+  "errorUnexpected": {
+    "message": "发生意外错误",
+    "description": "Generic error"
+  }
+}

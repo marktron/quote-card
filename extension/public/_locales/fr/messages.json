@@ -1,0 +1,98 @@
+{
+  "extensionName": {
+    "message": "QuoteCard",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Créez de belles images de citations partageables à partir du texte sélectionné",
+    "description": "Extension description shown in browser settings"
+  },
+  "actionTitle": {
+    "message": "Créer une QuoteCard",
+    "description": "Tooltip for extension icon"
+  },
+  "loadingMessage": {
+    "message": "Création de la carte...",
+    "description": "Loading state message"
+  },
+  "themeLabel": {
+    "message": "Thème",
+    "description": "Label for theme selector"
+  },
+  "formatLabel": {
+    "message": "Format",
+    "description": "Label for format selector"
+  },
+  "formatSquare": {
+    "message": "Carré",
+    "description": "Square aspect ratio"
+  },
+  "formatPortrait": {
+    "message": "Portrait",
+    "description": "Portrait aspect ratio"
+  },
+  "formatLandscape": {
+    "message": "Paysage",
+    "description": "Landscape aspect ratio"
+  },
+  "copyButton": {
+    "message": "Copier dans le presse-papiers",
+    "description": "Copy button label"
+  },
+  "copyingButton": {
+    "message": "Copie...",
+    "description": "Copy in progress"
+  },
+  "copiedButton": {
+    "message": "Copié !",
+    "description": "Copy success"
+  },
+  "downloadButton": {
+    "message": "Télécharger",
+    "description": "Download button label"
+  },
+  "savingButton": {
+    "message": "Enregistrement...",
+    "description": "Save in progress"
+  },
+  "savedButton": {
+    "message": "Enregistré !",
+    "description": "Save success"
+  },
+  "emptyStateTitle": {
+    "message": "Aucun texte sélectionné",
+    "description": "Empty state title"
+  },
+  "emptyStateDescription": {
+    "message": "Sélectionnez du texte sur la page, puis cliquez sur l'icône QuoteCard pour créer une belle carte de citation.",
+    "description": "Empty state instructions"
+  },
+  "closeButton": {
+    "message": "Fermer",
+    "description": "Close button label"
+  },
+  "errorConnection": {
+    "message": "Veuillez recharger la page et réessayer",
+    "description": "Connection error message"
+  },
+  "errorTabAccess": {
+    "message": "Impossible d'accéder à l'onglet actuel",
+    "description": "Tab access error"
+  },
+  "errorRenderFailed": {
+    "message": "Échec de la création de la carte",
+    "description": "Render error"
+  },
+  "errorCopyFailed": {
+    "message": "Échec de la copie dans le presse-papiers",
+    "description": "Copy error"
+  },
+  "errorSaveFailed": {
+    "message": "Échec de l'enregistrement de l'image",
+    "description": "Save error"
+  },
+  "errorUnexpected": {
+    "message": "Une erreur inattendue s'est produite",
+    "description": "Generic error"
+  }
+}

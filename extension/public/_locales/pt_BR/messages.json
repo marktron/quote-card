@@ -1,0 +1,98 @@
+{
+  "extensionName": {
+    "message": "QuoteCard",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Crie belas imagens de citações compartilháveis a partir do texto selecionado",
+    "description": "Extension description shown in browser settings"
+  },
+  "actionTitle": {
+    "message": "Criar QuoteCard",
+    "description": "Tooltip for extension icon"
+  },
+  "loadingMessage": {
+    "message": "Gerando cartão...",
+    "description": "Loading state message"
+  },
+  "themeLabel": {
+    "message": "Tema",
+    "description": "Label for theme selector"
+  },
+  "formatLabel": {
+    "message": "Formato",
+    "description": "Label for format selector"
+  },
+  "formatSquare": {
+    "message": "Quadrado",
+    "description": "Square aspect ratio"
+  },
+  "formatPortrait": {
+    "message": "Retrato",
+    "description": "Portrait aspect ratio"
+  },
+  "formatLandscape": {
+    "message": "Paisagem",
+    "description": "Landscape aspect ratio"
+  },
+  "copyButton": {
+    "message": "Copiar para área de transferência",
+    "description": "Copy button label"
+  },
+  "copyingButton": {
+    "message": "Copiando...",
+    "description": "Copy in progress"
+  },
+  "copiedButton": {
+    "message": "Copiado!",
+    "description": "Copy success"
+  },
+  "downloadButton": {
+    "message": "Baixar",
+    "description": "Download button label"
+  },
+  "savingButton": {
+    "message": "Salvando...",
+    "description": "Save in progress"
+  },
+  "savedButton": {
+    "message": "Salvo!",
+    "description": "Save success"
+  },
+  "emptyStateTitle": {
+    "message": "Nenhum texto selecionado",
+    "description": "Empty state title"
+  },
+  "emptyStateDescription": {
+    "message": "Selecione algum texto na página e clique no ícone do QuoteCard para criar um belo cartão de citação.",
+    "description": "Empty state instructions"
+  },
+  "closeButton": {
+    "message": "Fechar",
+    "description": "Close button label"
+  },
+  "errorConnection": {
+    "message": "Por favor, recarregue a página e tente novamente",
+    "description": "Connection error message"
+  },
+  "errorTabAccess": {
+    "message": "Não foi possível acessar a aba atual",
+    "description": "Tab access error"
+  },
+  "errorRenderFailed": {
+    "message": "Falha ao criar o cartão de citação",
+    "description": "Render error"
+  },
+  "errorCopyFailed": {
+    "message": "Falha ao copiar para a área de transferência",
+    "description": "Copy error"
+  },
+  "errorSaveFailed": {
+    "message": "Falha ao salvar a imagem",
+    "description": "Save error"
+  },
+  "errorUnexpected": {
+    "message": "Ocorreu um erro inesperado",
+    "description": "Generic error"
+  }
+}

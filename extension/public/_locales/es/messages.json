@@ -1,0 +1,98 @@
+{
+  "extensionName": {
+    "message": "QuoteCard",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Crea hermosas imágenes de citas compartibles a partir del texto seleccionado",
+    "description": "Extension description shown in browser settings"
+  },
+  "actionTitle": {
+    "message": "Crear QuoteCard",
+    "description": "Tooltip for extension icon"
+  },
+  "loadingMessage": {
+    "message": "Generando tarjeta...",
+    "description": "Loading state message"
+  },
+  "themeLabel": {
+    "message": "Tema",
+    "description": "Label for theme selector"
+  },
+  "formatLabel": {
+    "message": "Formato",
+    "description": "Label for format selector"
+  },
+  "formatSquare": {
+    "message": "Cuadrado",
+    "description": "Square aspect ratio"
+  },
+  "formatPortrait": {
+    "message": "Vertical",
+    "description": "Portrait aspect ratio"
+  },
+  "formatLandscape": {
+    "message": "Horizontal",
+    "description": "Landscape aspect ratio"
+  },
+  "copyButton": {
+    "message": "Copiar al portapapeles",
+    "description": "Copy button label"
+  },
+  "copyingButton": {
+    "message": "Copiando...",
+    "description": "Copy in progress"
+  },
+  "copiedButton": {
+    "message": "¡Copiado!",
+    "description": "Copy success"
+  },
+  "downloadButton": {
+    "message": "Descargar",
+    "description": "Download button label"
+  },
+  "savingButton": {
+    "message": "Guardando...",
+    "description": "Save in progress"
+  },
+  "savedButton": {
+    "message": "¡Guardado!",
+    "description": "Save success"
+  },
+  "emptyStateTitle": {
+    "message": "Ningún texto seleccionado",
+    "description": "Empty state title"
+  },
+  "emptyStateDescription": {
+    "message": "Selecciona texto en la página y haz clic en el icono de QuoteCard para crear una hermosa tarjeta de cita.",
+    "description": "Empty state instructions"
+  },
+  "closeButton": {
+    "message": "Cerrar",
+    "description": "Close button label"
+  },
+  "errorConnection": {
+    "message": "Por favor, recarga la página e inténtalo de nuevo",
+    "description": "Connection error message"
+  },
+  "errorTabAccess": {
+    "message": "No se pudo acceder a la pestaña actual",
+    "description": "Tab access error"
+  },
+  "errorRenderFailed": {
+    "message": "Error al crear la tarjeta de cita",
+    "description": "Render error"
+  },
+  "errorCopyFailed": {
+    "message": "Error al copiar al portapapeles",
+    "description": "Copy error"
+  },
+  "errorSaveFailed": {
+    "message": "Error al guardar la imagen",
+    "description": "Save error"
+  },
+  "errorUnexpected": {
+    "message": "Ha ocurrido un error inesperado",
+    "description": "Generic error"
+  }
+}

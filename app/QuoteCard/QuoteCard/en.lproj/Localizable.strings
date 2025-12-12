@@ -1,0 +1,17 @@
+/* App name */
+"appName" = "QuoteCard";
+
+/* App tagline shown below the name */
+"appTagline" = "Turn highlighted text in Safari into shareable quote images.";
+
+/* Step 1 instruction */
+"step1" = "In Safari, choose Safari → Settings… → Extensions.";
+
+/* Step 2 instruction */
+"step2" = "Turn on “QuoteCard” in the list.";
+
+/* Step 3 instruction */
+"step3" = "Highlight text on any page, then right‑click and choose “Create QuoteCard” or press the menu bar icon";
+
+/* Button to open Safari extension preferences */
+"openSafariExtensions" = "Open Safari Extensions";

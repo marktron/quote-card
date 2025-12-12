@@ -1,0 +1,17 @@
+/* App name */
+"appName" = "QuoteCard";
+
+/* App tagline shown below the name */
+"appTagline" = "Transformez le texte surligné dans Safari en images de citations partageables.";
+
+/* Step 1 instruction */
+"step1" = "Dans Safari, choisissez Safari → Réglages… → Extensions.";
+
+/* Step 2 instruction */
+"step2" = "Activez « QuoteCard » dans la liste.";
+
+/* Step 3 instruction */
+"step3" = "Surlignez du texte sur une page, puis faites un clic droit et choisissez « Créer QuoteCard » ou cliquez sur l'icône de la barre des menus.";
+
+/* Button to open Safari extension preferences */
+"openSafariExtensions" = "Ouvrir les extensions Safari";

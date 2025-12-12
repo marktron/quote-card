@@ -8,8 +8,22 @@ import type {
 import { isConnectionError } from "../shared/errors.js";
 import { initUI, setState, getCardPreview, withButtonState } from "./ui.js";
 
+// Localization - call browser.i18n.getMessage directly to avoid Safari's strict mode binding issue
+function localizeDocument(): void {
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.getAttribute("data-i18n");
+    if (key) {
+      const message = browser.i18n.getMessage(key);
+      if (message) {
+        element.textContent = message;
+      }
+    }
+  });
+}
+
 // Initialize UI elements
 initUI();
+localizeDocument();
 const themeSelect = document.getElementById("theme-select") as HTMLSelectElement;
 const aspectSelect = document.getElementById("aspect-select") as HTMLSelectElement;
 const copyBtn = document.getElementById("copy-btn") as HTMLButtonElement;
@@ -78,7 +92,7 @@ async function renderQuoteCard(isRerender = false): Promise<void> {
     currentResult = result;
 
     if (!result.success || !result.dataUrl) {
-      setState("error", result.errorMessage || "Rendering failed");
+      setState("error", result.errorMessage || browser.i18n.getMessage("errorRenderFailed") || "Failed to render quote card");
       return;
     }
 
@@ -93,7 +107,7 @@ async function renderQuoteCard(isRerender = false): Promise<void> {
     setState("preview");
   } catch (error) {
     console.error("Render error:", error);
-    setState("error", "Failed to render quote card");
+    setState("error", browser.i18n.getMessage("errorRenderFailed") || "Failed to render quote card");
   }
 }
 
@@ -112,10 +126,15 @@ async function copyToClipboard(): Promise<void> {
       });
       return response;
     },
-    { loading: "Copying...", success: "Copied!", initial: "Copy to Clipboard" },
+    {
+      loading: browser.i18n.getMessage("copyingButton") || "Copying...",
+      success: browser.i18n.getMessage("copiedButton") || "Copied!",
+      initial: browser.i18n.getMessage("copyButton") || "Copy to Clipboard"
+    },
     response => {
       if (!response?.success) {
-        alert(`Failed to copy: ${response?.errorMessage || "Unknown error"}`);
+        const errorMsg = browser.i18n.getMessage("errorCopyFailed") || "Failed to copy to clipboard";
+        alert(`${errorMsg}: ${response?.errorMessage || ""}`);
         return false;
       }
       return true;
@@ -139,10 +158,15 @@ async function saveImage(): Promise<void> {
       });
       return response;
     },
-    { loading: "Saving...", success: "Saved to Downloads!", initial: "Save Image" },
+    {
+      loading: browser.i18n.getMessage("savingButton") || "Saving...",
+      success: browser.i18n.getMessage("savedButton") || "Saved!",
+      initial: browser.i18n.getMessage("downloadButton") || "Download"
+    },
     response => {
       if (!response?.success) {
-        alert(`Failed to save: ${response?.errorMessage || "Unknown error"}`);
+        const errorMsg = browser.i18n.getMessage("errorSaveFailed") || "Failed to save image";
+        alert(`${errorMsg}: ${response?.errorMessage || ""}`);
         return false;
       }
       return true;
@@ -180,15 +204,24 @@ async function init(): Promise<void> {
 
     const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
     if (!tab?.id) {
-      setState("error", "Could not access current tab");
+      setState("error", browser.i18n.getMessage("errorTabAccess") || "Could not access current tab");
       return;
     }
 
     activeTabId = tab.id;
 
-    const selectionResp = await browser.tabs.sendMessage(tab.id, {
-      type: "REQUEST_SELECTION"
-    });
+    let selectionResp;
+    try {
+      selectionResp = await browser.tabs.sendMessage(tab.id, {
+        type: "REQUEST_SELECTION"
+      });
+    } catch (error) {
+      if (isConnectionError(error)) {
+        setState("error", browser.i18n.getMessage("errorConnection") || "Please reload the page and try again");
+        return;
+      }
+      throw error;
+    }
 
     if (!selectionResp || !selectionResp.text) {
       setState("empty");
@@ -225,10 +258,10 @@ async function init(): Promise<void> {
     await renderQuoteCard();
   } catch (error) {
     if (isConnectionError(error)) {
-      setState("error", "Please reload the page and try again");
+      setState("error", browser.i18n.getMessage("errorConnection") || "Please reload the page and try again");
     } else {
       console.error("Popup initialization error:", error);
-      setState("error", "Failed to initialize popup");
+      setState("error", browser.i18n.getMessage("errorUnexpected") || "An unexpected error occurred");
     }
   }
 }

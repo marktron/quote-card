@@ -1,0 +1,98 @@
+{
+  "extensionName": {
+    "message": "QuoteCard",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "選択したテキストから美しい引用画像を作成",
+    "description": "Extension description shown in browser settings"
+  },
+  "actionTitle": {
+    "message": "QuoteCardを作成",
+    "description": "Tooltip for extension icon"
+  },
+  "loadingMessage": {
+    "message": "カードを作成中...",
+    "description": "Loading state message"
+  },
+  "themeLabel": {
+    "message": "テーマ",
+    "description": "Label for theme selector"
+  },
+  "formatLabel": {
+    "message": "形式",
+    "description": "Label for format selector"
+  },
+  "formatSquare": {
+    "message": "正方形",
+    "description": "Square aspect ratio"
+  },
+  "formatPortrait": {
+    "message": "縦長",
+    "description": "Portrait aspect ratio"
+  },
+  "formatLandscape": {
+    "message": "横長",
+    "description": "Landscape aspect ratio"
+  },
+  "copyButton": {
+    "message": "クリップボードにコピー",
+    "description": "Copy button label"
+  },
+  "copyingButton": {
+    "message": "コピー中...",
+    "description": "Copy in progress"
+  },
+  "copiedButton": {
+    "message": "コピー完了！",
+    "description": "Copy success"
+  },
+  "downloadButton": {
+    "message": "ダウンロード",
+    "description": "Download button label"
+  },
+  "savingButton": {
+    "message": "保存中...",
+    "description": "Save in progress"
+  },
+  "savedButton": {
+    "message": "保存完了！",
+    "description": "Save success"
+  },
+  "emptyStateTitle": {
+    "message": "テキストが選択されていません",
+    "description": "Empty state title"
+  },
+  "emptyStateDescription": {
+    "message": "ページ上のテキストを選択し、QuoteCardアイコンをクリックして美しい引用カードを作成してください。",
+    "description": "Empty state instructions"
+  },
+  "closeButton": {
+    "message": "閉じる",
+    "description": "Close button label"
+  },
+  "errorConnection": {
+    "message": "ページを再読み込みしてもう一度お試しください",
+    "description": "Connection error message"
+  },
+  "errorTabAccess": {
+    "message": "現在のタブにアクセスできません",
+    "description": "Tab access error"
+  },
+  "errorRenderFailed": {
+    "message": "引用カードの作成に失敗しました",
+    "description": "Render error"
+  },
+  "errorCopyFailed": {
+    "message": "クリップボードへのコピーに失敗しました",
+    "description": "Copy error"
+  },
+  "errorSaveFailed": {
+    "message": "画像の保存に失敗しました",
+    "description": "Save error"
+  },
+  "errorUnexpected": {
+    "message": "予期しないエラーが発生しました",
+    "description": "Generic error"
+  }
+}

@@ -29,6 +29,26 @@
 		4DEB966D2EE72F220024D618 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB966A2EE72F220024D618 /* ColorUtils.swift */; };
 		4DEB966E2EE72F890024D618 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB966A2EE72F220024D618 /* ColorUtils.swift */; };
 		4DEB966F2EE72F8F0024D618 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB966B2EE72F220024D618 /* HTMLParser.swift */; };
+		4DEB99372EEB67FE0024D618 /* blueprint.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990A2EEB67FE0024D618 /* blueprint.jpg */; };
+		4DEB99382EEB67FE0024D618 /* chalkboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990B2EEB67FE0024D618 /* chalkboard.jpg */; };
+		4DEB99392EEB67FE0024D618 /* concrete.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990C2EEB67FE0024D618 /* concrete.jpg */; };
+		4DEB993A2EEB67FE0024D618 /* concrete_original.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990D2EEB67FE0024D618 /* concrete_original.jpg */; };
+		4DEB993B2EEB67FE0024D618 /* download-helper.html in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990E2EEB67FE0024D618 /* download-helper.html */; };
+		4DEB993C2EEB67FE0024D618 /* download-helper.js in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990F2EEB67FE0024D618 /* download-helper.js */; };
+		4DEB993D2EEB67FE0024D618 /* forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99102EEB67FE0024D618 /* forest.jpg */; };
+		4DEB993E2EEB67FE0024D618 /* forest_original.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99112EEB67FE0024D618 /* forest_original.jpg */; };
+		4DEB99402EEB67FE0024D618 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99132EEB67FE0024D618 /* manifest.json */; };
+		4DEB99412EEB67FE0024D618 /* marble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99142EEB67FE0024D618 /* marble.jpg */; };
+		4DEB99422EEB67FE0024D618 /* marble_original.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99152EEB67FE0024D618 /* marble_original.jpg */; };
+		4DEB99432EEB67FE0024D618 /* neon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99162EEB67FE0024D618 /* neon.jpg */; };
+		4DEB99442EEB67FE0024D618 /* newsprint.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99172EEB67FE0024D618 /* newsprint.jpg */; };
+		4DEB99452EEB67FE0024D618 /* pastel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99182EEB67FE0024D618 /* pastel.jpg */; };
+		4DEB99462EEB67FE0024D618 /* sand.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB991A2EEB67FE0024D618 /* sand.jpg */; };
+		4DEB99472EEB67FE0024D618 /* spectrum.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB991B2EEB67FE0024D618 /* spectrum.jpg */; };
+		4DEB99482EEB67FE0024D618 /* terminal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB991C2EEB67FE0024D618 /* terminal.jpg */; };
+		4DEB99492EEB67FE0024D618 /* vapor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB991D2EEB67FE0024D618 /* vapor.jpg */; };
+		4DEB994A2EEB67FE0024D618 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB99192EEB67FE0024D618 /* SafariWebExtensionHandler.swift */; };
+		4DEB99CC2EEB69DA0024D618 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99CB2EEB69D90024D618 /* _locales */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,19 +99,41 @@
 		4DEB96282EE36C410024D618 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		4DEB966A2EE72F220024D618 /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		4DEB966B2EE72F220024D618 /* HTMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
+		4DEB990A2EEB67FE0024D618 /* blueprint.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blueprint.jpg; sourceTree = "<group>"; };
+		4DEB990B2EEB67FE0024D618 /* chalkboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chalkboard.jpg; sourceTree = "<group>"; };
+		4DEB990C2EEB67FE0024D618 /* concrete.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = concrete.jpg; sourceTree = "<group>"; };
+		4DEB990D2EEB67FE0024D618 /* concrete_original.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = concrete_original.jpg; sourceTree = "<group>"; };
+		4DEB990E2EEB67FE0024D618 /* download-helper.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "download-helper.html"; sourceTree = "<group>"; };
+		4DEB990F2EEB67FE0024D618 /* download-helper.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "download-helper.js"; sourceTree = "<group>"; };
+		4DEB99102EEB67FE0024D618 /* forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = forest.jpg; sourceTree = "<group>"; };
+		4DEB99112EEB67FE0024D618 /* forest_original.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = forest_original.jpg; sourceTree = "<group>"; };
+		4DEB99122EEB67FE0024D618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DEB99132EEB67FE0024D618 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		4DEB99142EEB67FE0024D618 /* marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = marble.jpg; sourceTree = "<group>"; };
+		4DEB99152EEB67FE0024D618 /* marble_original.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = marble_original.jpg; sourceTree = "<group>"; };
+		4DEB99162EEB67FE0024D618 /* neon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = neon.jpg; sourceTree = "<group>"; };
+		4DEB99172EEB67FE0024D618 /* newsprint.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = newsprint.jpg; sourceTree = "<group>"; };
+		4DEB99182EEB67FE0024D618 /* pastel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pastel.jpg; sourceTree = "<group>"; };
+		4DEB99192EEB67FE0024D618 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		4DEB991A2EEB67FE0024D618 /* sand.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sand.jpg; sourceTree = "<group>"; };
+		4DEB991B2EEB67FE0024D618 /* spectrum.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spectrum.jpg; sourceTree = "<group>"; };
+		4DEB991C2EEB67FE0024D618 /* terminal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = terminal.jpg; sourceTree = "<group>"; };
+		4DEB991D2EEB67FE0024D618 /* vapor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vapor.jpg; sourceTree = "<group>"; };
+		4DEB99CB2EEB69D90024D618 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		4DEB95C62EE204610024D618 /* Exceptions for "QuoteCard Extension" folder in "QuoteCard Extension" target */ = {
+		4DEB99862EEB68040024D618 /* Exceptions for "icons" folder in "QuoteCard Extension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				background/background.js,
-				content/contentScript.js,
-				icons/README.md,
-				Info.plist,
-				popup/popup.css,
-				popup/popup.html,
-				popup/popup.js,
+				README.md,
+			);
+			target = 4DEB95AC2EE204610024D618 /* QuoteCard Extension */;
+		};
+		4DEB99872EEB68040024D618 /* Exceptions for "popup" folder in "QuoteCard Extension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ui.js,
 			);
 			target = 4DEB95AC2EE204610024D618 /* QuoteCard Extension */;
 		};
@@ -103,12 +145,45 @@
 			path = QuoteCard;
 			sourceTree = "<group>";
 		};
-		4DEB95B12EE204610024D618 /* QuoteCard Extension */ = {
+		4DEB99652EEB68040024D618 /* background */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = background;
+			sourceTree = "<group>";
+		};
+		4DEB99692EEB68040024D618 /* shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = shared;
+			sourceTree = "<group>";
+		};
+		4DEB996E2EEB68040024D618 /* content */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = content;
+			sourceTree = "<group>";
+		};
+		4DEB99742EEB68040024D618 /* icons */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				4DEB95C62EE204610024D618 /* Exceptions for "QuoteCard Extension" folder in "QuoteCard Extension" target */,
+				4DEB99862EEB68040024D618 /* Exceptions for "icons" folder in "QuoteCard Extension" target */,
 			);
-			path = "QuoteCard Extension";
+			path = icons;
+			sourceTree = "<group>";
+		};
+		4DEB997C2EEB68040024D618 /* download */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = download;
+			sourceTree = "<group>";
+		};
+		4DEB99832EEB68040024D618 /* popup */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4DEB99872EEB68040024D618 /* Exceptions for "popup" folder in "QuoteCard Extension" target */,
+			);
+			path = popup;
+			sourceTree = "<group>";
+		};
+		4DEB99852EEB68040024D618 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -134,6 +209,7 @@
 		4DEB958A2EE2045F0024D618 = {
 			isa = PBXGroup;
 			children = (
+				4DEB99CB2EEB69D90024D618 /* _locales */,
 				4DEB96282EE36C410024D618 /* AppIcon.icon */,
 				4DEB961B2EE258AF0024D618 /* themes.json */,
 				4DEB96112EE21A340024D618 /* content */,
@@ -155,7 +231,7 @@
 				4DEB966A2EE72F220024D618 /* ColorUtils.swift */,
 				4DEB966B2EE72F220024D618 /* HTMLParser.swift */,
 				4DEB95952EE2045F0024D618 /* QuoteCard */,
-				4DEB95B12EE204610024D618 /* QuoteCard Extension */,
+				4DEB991E2EEB67FE0024D618 /* QuoteCard Extension */,
 				4DEB96262EE36AAA0024D618 /* Frameworks */,
 				4DEB95942EE2045F0024D618 /* Products */,
 			);
@@ -176,6 +252,40 @@
 				4DEB96272EE36AAA0024D618 /* quotecard.icon */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4DEB991E2EEB67FE0024D618 /* QuoteCard Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4DEB99652EEB68040024D618 /* background */,
+				4DEB996E2EEB68040024D618 /* content */,
+				4DEB997C2EEB68040024D618 /* download */,
+				4DEB99742EEB68040024D618 /* icons */,
+				4DEB99832EEB68040024D618 /* popup */,
+				4DEB99852EEB68040024D618 /* Resources */,
+				4DEB99692EEB68040024D618 /* shared */,
+				4DEB990A2EEB67FE0024D618 /* blueprint.jpg */,
+				4DEB990B2EEB67FE0024D618 /* chalkboard.jpg */,
+				4DEB990C2EEB67FE0024D618 /* concrete.jpg */,
+				4DEB990D2EEB67FE0024D618 /* concrete_original.jpg */,
+				4DEB990E2EEB67FE0024D618 /* download-helper.html */,
+				4DEB990F2EEB67FE0024D618 /* download-helper.js */,
+				4DEB99102EEB67FE0024D618 /* forest.jpg */,
+				4DEB99112EEB67FE0024D618 /* forest_original.jpg */,
+				4DEB99122EEB67FE0024D618 /* Info.plist */,
+				4DEB99132EEB67FE0024D618 /* manifest.json */,
+				4DEB99142EEB67FE0024D618 /* marble.jpg */,
+				4DEB99152EEB67FE0024D618 /* marble_original.jpg */,
+				4DEB99162EEB67FE0024D618 /* neon.jpg */,
+				4DEB99172EEB67FE0024D618 /* newsprint.jpg */,
+				4DEB99182EEB67FE0024D618 /* pastel.jpg */,
+				4DEB99192EEB67FE0024D618 /* SafariWebExtensionHandler.swift */,
+				4DEB991A2EEB67FE0024D618 /* sand.jpg */,
+				4DEB991B2EEB67FE0024D618 /* spectrum.jpg */,
+				4DEB991C2EEB67FE0024D618 /* terminal.jpg */,
+				4DEB991D2EEB67FE0024D618 /* vapor.jpg */,
+			);
+			path = "QuoteCard Extension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,7 +328,9 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4DEB95B12EE204610024D618 /* QuoteCard Extension */,
+				4DEB99692EEB68040024D618 /* shared */,
+				4DEB99742EEB68040024D618 /* icons */,
+				4DEB997C2EEB68040024D618 /* download */,
 			);
 			name = "QuoteCard Extension";
 			packageProductDependencies = (
@@ -251,6 +363,13 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				fr,
+				es,
+				it,
+				ja,
+				"zh-Hans",
+				"pt-BR",
 			);
 			mainGroup = 4DEB958A2EE2045F0024D618;
 			minimizedProjectReferenceProxies = 1;
@@ -279,12 +398,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DEB99CC2EEB69DA0024D618 /* _locales in Resources */,
 				4DEB961E2EE25FE50024D618 /* shared in Resources */,
 				4DEB96122EE21A340024D618 /* background in Resources */,
 				4DEB96132EE21A340024D618 /* icons in Resources */,
 				4DEB96152EE21A340024D618 /* popup in Resources */,
 				4DEB96162EE21A340024D618 /* content in Resources */,
 				4DEB96292EE36C410024D618 /* AppIcon.icon in Resources */,
+				4DEB99372EEB67FE0024D618 /* blueprint.jpg in Resources */,
+				4DEB99382EEB67FE0024D618 /* chalkboard.jpg in Resources */,
+				4DEB99392EEB67FE0024D618 /* concrete.jpg in Resources */,
+				4DEB993A2EEB67FE0024D618 /* concrete_original.jpg in Resources */,
+				4DEB993B2EEB67FE0024D618 /* download-helper.html in Resources */,
+				4DEB993C2EEB67FE0024D618 /* download-helper.js in Resources */,
+				4DEB993D2EEB67FE0024D618 /* forest.jpg in Resources */,
+				4DEB993E2EEB67FE0024D618 /* forest_original.jpg in Resources */,
+				4DEB99402EEB67FE0024D618 /* manifest.json in Resources */,
+				4DEB99412EEB67FE0024D618 /* marble.jpg in Resources */,
+				4DEB99422EEB67FE0024D618 /* marble_original.jpg in Resources */,
+				4DEB99432EEB67FE0024D618 /* neon.jpg in Resources */,
+				4DEB99442EEB67FE0024D618 /* newsprint.jpg in Resources */,
+				4DEB99452EEB67FE0024D618 /* pastel.jpg in Resources */,
+				4DEB99462EEB67FE0024D618 /* sand.jpg in Resources */,
+				4DEB99472EEB67FE0024D618 /* spectrum.jpg in Resources */,
+				4DEB99482EEB67FE0024D618 /* terminal.jpg in Resources */,
+				4DEB99492EEB67FE0024D618 /* vapor.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +453,7 @@
 				4DEB966F2EE72F8F0024D618 /* HTMLParser.swift in Sources */,
 				4DEB960C2EE219310024D618 /* ThemeRegistry.swift in Sources */,
 				4DEB960A2EE219230024D618 /* RenderTypes.swift in Sources */,
+				4DEB994A2EEB67FE0024D618 /* SafariWebExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +486,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "QuoteCard Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "QuoteCard Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = QuoteCard;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -395,7 +534,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "QuoteCard Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "QuoteCard Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = QuoteCard;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

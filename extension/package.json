@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc && npm run copy-assets && npm run sync-xcode",
     "copy-assets": "cp -r public/* dist/ && cp src/popup/*.html dist/popup/ && cp src/popup/*.css dist/popup/",
-    "sync-xcode": "cp -r dist/* '../app/QuoteCard/QuoteCard Extension/'",
+    "sync-xcode": "cp -r dist/* '../app/QuoteCard/QuoteCard Extension/' && cp -r dist/_locales '../app/QuoteCard/'",
     "watch": "tsc --watch",
     "clean": "rm -rf dist",
     "lint": "eslint src/**/*.ts",

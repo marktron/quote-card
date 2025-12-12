@@ -1,0 +1,17 @@
+/* App name */
+"appName" = "QuoteCard";
+
+/* App tagline shown below the name */
+"appTagline" = "将 Safari 中高亮的文本转换为可分享的引用图片。";
+
+/* Step 1 instruction */
+"step1" = "在 Safari 中，选择 Safari → 设置… → 扩展。";
+
+/* Step 2 instruction */
+"step2" = "在列表中启用「QuoteCard」。";
+
+/* Step 3 instruction */
+"step3" = "在任意页面高亮文本，然后右键点击并选择「创建 QuoteCard」，或点击菜单栏图标。";
+
+/* Button to open Safari extension preferences */
+"openSafariExtensions" = "打开 Safari 扩展";
