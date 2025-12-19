@@ -15,3 +15,6 @@
 
 /* Button to open Safari extension preferences */
 "openSafariExtensions" = "Safari機能拡張を開く";
+
+/* Note that app doesn't need to stay open */
+"noAppNeeded" = "このアプリは閉じても大丈夫です — 機能拡張はSafariで独立して動作します。";

@@ -2,13 +2,98 @@
   "version": 1,
   "themes": [
     {
+      "id": "minimalist",
+      "name": "Minimalist",
+      "description": "Border-only card on pure white; maximally restrained for decks and newsletters.",
+      "font": {
+        "family": "Optima",
+        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
+        "weight": 400
+      },
+      "background": {
+        "color": "#F1F5F9"
+      },
+      "text": {
+        "color": "#1D293D",
+        "fontSize": 34,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#1D293D",
+        "fontSize": 15,
+        "opacity": 0.66
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "minimalist-dark",
+      "name": "Minimalist (Dark)",
+      "description": "Border-only card on pure white; maximally restrained for decks and newsletters.",
+      "font": {
+        "family": "Optima",
+        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
+        "weight": 400
+      },
+      "background": {
+        "color": "#1D293D"
+      },
+      "text": {
+        "color": "#F1F5F9",
+        "fontSize": 34,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#F1F5F9",
+        "fontSize": 15,
+        "opacity": 0.66
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "vapor",
+      "name": "Vapor",
+      "description": "Soft vapor gradient with soft text.",
+      "font": {
+        "family": "Futura",
+        "fallback": "SF Pro,-apple-system, BlinkMacSystemFont, sans-serif",
+        "weight": 600
+      },
+      "background": {
+        "type": "image",
+        "color": "#C9D2CF",
+        "image": {
+          "url": "vapor.jpg"
+        }
+      },
+      "text": {
+        "color": "#052433",
+        "fontSize": 38,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#052433",
+        "fontSize": 16,
+        "opacity": 0.7
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
       "id": "soft-sand",
       "name": "Sand",
       "description": "Calm editorial beige with understated shadow. Ideal for essays and reflective quotes.",
       "font": {
-        "family": "New York",
-        "fallback": "Georgia, serif",
-        "weight": 300
+        "family": "Optima",
+        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
+        "weight": 400
       },
       "background": {
         "type": "image",
@@ -33,44 +118,13 @@
       }
     },
     {
-      "id": "chalkboard",
-      "name": "Chalkboard",
-      "description": "Dark chalkboard aesthetic with handwritten brush script, perfect for casual and creative quotes.",
-      "font": {
-        "family": "Chalkduster",
-        "fallback": "cursive",
-        "weight": 400
-      },
-      "background": {
-        "type": "image",
-        "color": "#003327",
-        "image": {
-          "url": "chalkboard.jpg"
-        }
-      },
-      "text": {
-        "color": "#FEF3C6",
-        "fontSize": 40,
-        "lineHeight": 1.4
-      },
-      "footer": {
-        "enabled": true,
-        "color": "#FEF3C6",
-        "fontSize": 16,
-        "opacity": 0.75
-      },
-      "layout": {
-        "padding": 80
-      }
-    },
-    {
       "id": "concrete",
       "name": "Concrete",
       "description": "Brutalist concrete texture with sharp edges.",
       "font": {
         "family": "Helvetica Neue",
         "fallback": "Helvetica, Arial, sans-serif",
-        "weight": 600
+        "weight": 700
       },
       "background": {
         "type": "image",
@@ -95,8 +149,35 @@
       }
     },
     {
-      "id": "forest-canopy",
-      "name": "Forest Canopy",
+      "id": "scholarly",
+      "name": "Scholarly",
+      "description": "Classic serif typography on clean background, ideal for academic and professional quotes.",
+      "font": {
+        "family": "Hoefler Text",
+        "fallback": "Georgia, serif",
+        "weight": 400
+      },
+      "background": {
+        "color": "#F8FAFC"
+      },
+      "text": {
+        "color": "#1D293D",
+        "fontSize": 40,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#1D293D",
+        "fontSize": 16,
+        "opacity": 0.75
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "forest",
+      "name": "Forest",
       "description": "Deep forest green gradient evoking nature and growth, ideal for environmental and mindful quotes.",
       "font": {
         "family": "Gill Sans",
@@ -118,6 +199,95 @@
       "footer": {
         "enabled": true,
         "color": "#DCFCE7",
+        "fontSize": 16,
+        "opacity": 0.75
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "cardinal",
+      "name": "Cardinal",
+      "description": "Bold cardinal red with soft cream text, perfect for powerful and passionate quotes.",
+      "font": {
+        "family": "Gill Sans",
+        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
+        "weight": 400
+      },
+      "background": {
+        "color": "#9F0712"
+      },
+      "text": {
+        "color": "#FFE2E2",
+        "fontSize": 40,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#FFE2E2",
+        "fontSize": 16,
+        "opacity": 0.75
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "ocean-depths",
+      "name": "Ocean",
+      "description": "Deep blue gradient evoking calm ocean waters, perfect for serene and contemplative quotes.",
+      "font": {
+        "family": "Gill Sans",
+        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
+        "weight": 400
+      },
+      "background": {
+        "type": "gradient",
+        "gradient": {
+          "colors": ["#048DD6", "#024A70"],
+          "direction": "vertical"
+        }
+      },
+      "text": {
+        "color": "#DFF2FE",
+        "fontSize": 40,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#DFF2FE",
+        "fontSize": 16,
+        "opacity": 0.75
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "sunshine",
+      "name": "Sunshine",
+      "description": "Bright and cheerful gradient perfect for uplifting quotes and positive messages.",
+      "font": {
+        "family": "Gill Sans",
+        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
+        "weight": 400
+      },
+      "background": {
+        "type": "gradient",
+        "gradient": {
+          "colors": ["#FFDF20", "#F0B100"],
+          "direction": "vertical"
+        }
+      },
+      "text": {
+        "color": "#432004",
+        "fontSize": 40,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#432004",
         "fontSize": 16,
         "opacity": 0.75
       },
@@ -229,64 +399,6 @@
       }
     },
     {
-      "id": "ocean-depths",
-      "name": "Ocean",
-      "description": "Deep blue gradient evoking calm ocean waters, perfect for serene and contemplative quotes.",
-      "font": {
-        "family": "Gill Sans",
-        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
-        "weight": 400
-      },
-      "background": {
-        "type": "gradient",
-        "gradient": {
-          "colors": ["#048DD6", "#024A70"],
-          "direction": "vertical"
-        }
-      },
-      "text": {
-        "color": "#DFF2FE",
-        "fontSize": 40,
-        "lineHeight": 1.4
-      },
-      "footer": {
-        "enabled": true,
-        "color": "#DFF2FE",
-        "fontSize": 16,
-        "opacity": 0.75
-      },
-      "layout": {
-        "padding": 80
-      }
-    },
-    {
-      "id": "cardinal",
-      "name": "Cardinal",
-      "description": "Bold cardinal red with soft cream text, perfect for powerful and passionate quotes.",
-      "font": {
-        "family": "Gill Sans",
-        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
-        "weight": 400
-      },
-      "background": {
-        "color": "#9F0712"
-      },
-      "text": {
-        "color": "#FFE2E2",
-        "fontSize": 40,
-        "lineHeight": 1.4
-      },
-      "footer": {
-        "enabled": true,
-        "color": "#FFE2E2",
-        "fontSize": 16,
-        "opacity": 0.75
-      },
-      "layout": {
-        "padding": 80
-      }
-    },
-    {
       "id": "pastel",
       "name": "Y2K Pastel",
       "description": "Soft two-tone pastel panel with rounded corners; tuned for Instagram carousels.",
@@ -318,143 +430,31 @@
       }
     },
     {
-      "id": "sunshine",
-      "name": "Sunshine",
-      "description": "Bright and cheerful gradient perfect for uplifting quotes and positive messages.",
+      "id": "chalkboard",
+      "name": "Chalkboard",
+      "description": "Dark chalkboard aesthetic with handwritten brush script, perfect for casual and creative quotes.",
       "font": {
-        "family": "Gill Sans",
-        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
-        "weight": 400
-      },
-      "background": {
-        "type": "gradient",
-        "gradient": {
-          "colors": ["#FFDF20", "#F0B100"],
-          "direction": "vertical"
-        }
-      },
-      "text": {
-        "color": "#432004",
-        "fontSize": 40,
-        "lineHeight": 1.4
-      },
-      "footer": {
-        "enabled": true,
-        "color": "#432004",
-        "fontSize": 16,
-        "opacity": 0.75
-      },
-      "layout": {
-        "padding": 80
-      }
-    },
-    {
-      "id": "scholarly",
-      "name": "Scholarly",
-      "description": "Classic serif typography on clean background, ideal for academic and professional quotes.",
-      "font": {
-        "family": "Hoefler Text",
-        "fallback": "Georgia, serif",
-        "weight": 400
-      },
-      "background": {
-        "color": "#F8FAFC"
-      },
-      "text": {
-        "color": "#1D293D",
-        "fontSize": 40,
-        "lineHeight": 1.4
-      },
-      "footer": {
-        "enabled": true,
-        "color": "#1D293D",
-        "fontSize": 16,
-        "opacity": 0.75
-      },
-      "layout": {
-        "padding": 80
-      }
-    },
-    {
-      "id": "minimalist",
-      "name": "Minimalist",
-      "description": "Border-only card on pure white; maximally restrained for decks and newsletters.",
-      "font": {
-        "family": "Optima",
-        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
-        "weight": 300
-      },
-      "background": {
-        "color": "#F1F5F9"
-      },
-      "text": {
-        "color": "#1D293D",
-        "fontSize": 34,
-        "lineHeight": 1.4
-      },
-      "footer": {
-        "enabled": true,
-        "color": "#1D293D",
-        "fontSize": 15,
-        "opacity": 0.66
-      },
-      "layout": {
-        "padding": 80
-      }
-    },
-    {
-      "id": "minimalist-dark",
-      "name": "Minimalist (Dark)",
-      "description": "Border-only card on pure white; maximally restrained for decks and newsletters.",
-      "font": {
-        "family": "Optima",
-        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
-        "weight": 300
-      },
-      "background": {
-        "color": "#1D293D"
-      },
-      "text": {
-        "color": "#F1F5F9",
-        "fontSize": 34,
-        "lineHeight": 1.4
-      },
-      "footer": {
-        "enabled": true,
-        "color": "#F1F5F9",
-        "fontSize": 15,
-        "opacity": 0.66
-      },
-      "layout": {
-        "padding": 80
-      }
-    },
-    {
-      "id": "vapor",
-      "name": "Vapor",
-      "description": "Soft vapor gradient with soft text.",
-      "font": {
-        "family": "SF Pro",
-        "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
-        "weight": 400
+        "family": "Bradley Hand",
+        "fallback": "Marker Felt, cursive",
+        "weight": 800
       },
       "background": {
         "type": "image",
-        "color": "#C9D2CF",
+        "color": "#003327",
         "image": {
-          "url": "vapor.jpg"
+          "url": "chalkboard.jpg"
         }
       },
       "text": {
-        "color": "#052433",
-        "fontSize": 38,
+        "color": "#FEF3C6",
+        "fontSize": 40,
         "lineHeight": 1.4
       },
       "footer": {
         "enabled": true,
-        "color": "#052433",
+        "color": "#FEF3C6",
         "fontSize": 16,
-        "opacity": 0.7
+        "opacity": 0.75
       },
       "layout": {
         "padding": 80

@@ -3,6 +3,7 @@ import type {
   RenderResult,
   RenderSettings,
   ThemesData,
+  Theme,
   AspectRatio
 } from "../shared/types.js";
 import { isConnectionError } from "../shared/errors.js";
@@ -24,40 +25,82 @@ function localizeDocument(): void {
 // Initialize UI elements
 initUI();
 localizeDocument();
-const themeSelect = document.getElementById("theme-select") as HTMLSelectElement;
-const aspectSelect = document.getElementById("aspect-select") as HTMLSelectElement;
+const themePicker = document.querySelector(".theme-picker") as HTMLElement;
+const formatPicker = document.querySelector(".format-picker") as HTMLElement;
+const formatButtons = document.querySelectorAll(".format-btn") as NodeListOf<HTMLButtonElement>;
 const copyBtn = document.getElementById("copy-btn") as HTMLButtonElement;
 const saveBtn = document.getElementById("save-btn") as HTMLButtonElement;
 const closeBtn = document.getElementById("close-btn") as HTMLButtonElement;
 const retryBtn = document.getElementById("retry-btn") as HTMLButtonElement;
+
+// Current state
+let currentThemeId = "scholarly";
+let currentAspectRatio: AspectRatio = "portrait";
+let formatPickerExpanded = false;
 
 // State
 let currentRequest: RenderRequest | null = null;
 let currentResult: RenderResult | null = null;
 let activeTabId: number | null = null;
 
+function getThemeBackground(theme: Theme): string {
+  const bg = theme.background;
+
+  if (bg.type === "gradient" && bg.gradient) {
+    const colors = bg.gradient.colors;
+    const direction = bg.gradient.direction === "horizontal" ? "to right" : "to bottom";
+    return `linear-gradient(${direction}, ${colors.join(", ")})`;
+  }
+
+  if (bg.type === "image" && bg.image) {
+    const imageUrl = browser.runtime.getURL(bg.image.url);
+    return `url('${imageUrl}') center/cover, ${bg.color || "#888"}`;
+  }
+
+  return bg.color || "#888";
+}
+
+function setActiveTheme(themeId: string): void {
+  currentThemeId = themeId;
+  themePicker.querySelectorAll(".theme-swatch").forEach(btn => {
+    btn.classList.toggle("active", (btn as HTMLElement).dataset.theme === themeId);
+  });
+}
+
 async function populateThemeSelector(): Promise<void> {
   try {
     const response = await fetch(browser.runtime.getURL("shared/themes.json"));
     const data: ThemesData = await response.json();
 
-    themeSelect.innerHTML = "";
+    themePicker.innerHTML = "";
 
-    const themesArray = data.themes.sort((a, b) => a.name.localeCompare(b.name));
+    data.themes.forEach(theme => {
+      const swatch = document.createElement("button");
+      swatch.type = "button";
+      swatch.className = "theme-swatch";
+      swatch.dataset.theme = theme.id;
+      swatch.dataset.tooltip = theme.name;
+      swatch.setAttribute("aria-label", theme.name);
 
-    themesArray.forEach(theme => {
-      const option = document.createElement("option");
-      option.value = theme.id;
-      option.textContent = theme.name;
-      option.title = theme.description;
-      themeSelect.appendChild(option);
+      // Set background
+      swatch.style.background = getThemeBackground(theme);
+
+      // Set font styling for "Aa" text
+      swatch.style.fontFamily = `${theme.font.family}, ${theme.font.fallback}`;
+      swatch.style.fontWeight = String(theme.font.weight);
+      swatch.style.color = theme.text.color;
+      swatch.textContent = "Aa";
+
+      // Add click handler
+      swatch.addEventListener("click", () => {
+        setActiveTheme(theme.id);
+        void handleControlChange();
+      });
+
+      themePicker.appendChild(swatch);
     });
   } catch (error) {
     console.error("Failed to load themes:", error);
-    const option = document.createElement("option");
-    option.value = "scholarly";
-    option.textContent = "Scholarly";
-    themeSelect.appendChild(option);
   }
 }
 
@@ -175,17 +218,35 @@ async function saveImage(): Promise<void> {
   );
 }
 
+function setActiveFormat(format: AspectRatio): void {
+  currentAspectRatio = format;
+  formatButtons.forEach(btn => {
+    const btnFormat = btn.dataset.format;
+    btn.classList.toggle("active", btnFormat === format);
+  });
+}
+
+function expandFormatPicker(): void {
+  formatPickerExpanded = true;
+  formatPicker.classList.add("expanded");
+}
+
+function collapseFormatPicker(): void {
+  formatPickerExpanded = false;
+  formatPicker.classList.remove("expanded");
+}
+
 async function handleControlChange(): Promise<void> {
   if (!currentRequest) return;
 
   const prefs = {
-    themeId: themeSelect.value,
-    aspectRatio: aspectSelect.value
+    themeId: currentThemeId,
+    aspectRatio: currentAspectRatio
   };
 
   const settings: Partial<RenderSettings> = {
-    themeId: prefs.themeId,
-    aspectRatio: prefs.aspectRatio as AspectRatio,
+    themeId: currentThemeId,
+    aspectRatio: currentAspectRatio,
     exportFormat: "jpeg",
     includeAttribution: true
   };
@@ -194,6 +255,11 @@ async function handleControlChange(): Promise<void> {
 
   await browser.storage.sync.set({ userPreferences: prefs });
   await renderQuoteCard(true);
+}
+
+async function handleFormatChange(format: AspectRatio): Promise<void> {
+  setActiveFormat(format);
+  await handleControlChange();
 }
 
 async function init(): Promise<void> {
@@ -252,8 +318,8 @@ async function init(): Promise<void> {
       settingsOverride: settings
     };
 
-    themeSelect.value = prefs.themeId;
-    aspectSelect.value = prefs.aspectRatio;
+    setActiveTheme(prefs.themeId);
+    setActiveFormat(prefs.aspectRatio as AspectRatio);
 
     await renderQuoteCard();
   } catch (error) {
@@ -267,8 +333,33 @@ async function init(): Promise<void> {
 }
 
 // Event listeners - wrap async handlers to avoid unhandled promise warnings
-themeSelect.addEventListener("change", () => void handleControlChange());
-aspectSelect.addEventListener("change", () => void handleControlChange());
+
+// Format picker expand/collapse behavior
+formatButtons.forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const format = btn.dataset.format as AspectRatio;
+
+    if (!formatPickerExpanded) {
+      // Collapsed: expand the picker
+      expandFormatPicker();
+    } else {
+      // Expanded: select format and collapse
+      if (format && format !== currentAspectRatio) {
+        void handleFormatChange(format);
+      }
+      collapseFormatPicker();
+    }
+  });
+});
+
+// Collapse format picker when clicking outside
+document.addEventListener("click", (e) => {
+  if (formatPickerExpanded && !formatPicker.contains(e.target as Node)) {
+    collapseFormatPicker();
+  }
+});
+
 copyBtn.addEventListener("click", () => void copyToClipboard());
 saveBtn.addEventListener("click", () => void saveImage());
 closeBtn.addEventListener("click", () => window.close());

@@ -59,6 +59,7 @@ struct Theme: Codable {
     let id: String
     let name: String
     let fontFamily: String
+    let fontWeight: Int
     let background: Background
     let text: TextStyle
     let padding: CGFloat

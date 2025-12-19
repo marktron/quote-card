@@ -15,3 +15,6 @@
 
 /* Button to open Safari extension preferences */
 "openSafariExtensions" = "Open Safari Extensions";
+
+/* Note that app doesn't need to stay open */
+"noAppNeeded" = "You can close this app — the extension works independently in Safari.";

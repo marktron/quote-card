@@ -58,36 +58,60 @@ export interface SaveResult {
   filename?: string;
 }
 
-export interface ThemeMetadata {
-  id: string;
-  name: string;
-  description: string;
+export interface ThemeFont {
+  family: string;
+  fallback: string;
+  weight: number;
 }
 
-export interface ThemesData {
-  version: number;
-  themes: ThemeMetadata[];
+export interface ThemeBackground {
+  type?: "solid" | "gradient" | "image";
+  color?: string;
+  gradient?: {
+    colors: string[];
+    direction: "vertical" | "horizontal";
+  };
+  image?: {
+    url: string;
+  };
+}
+
+export interface ThemeText {
+  color: string;
+  fontSize: number;
+  lineHeight: number;
+  glow?: {
+    color: string;
+    radius: number;
+    opacity: number;
+  };
+}
+
+export interface ThemeFooter {
+  enabled: boolean;
+  color: string;
+  fontSize: number;
+  opacity: number;
+}
+
+export interface ThemeLayout {
+  padding: number;
 }
 
 export interface Theme {
   id: string;
-  fontFamily: string;
-  background: {
-    type: "solid";
-    color: string;
-  };
-  text: {
-    size: number;
-    color: string;
-    lineHeight: number;
-    maxWidth: string;
-  };
-  padding: number;
-  footer?: {
-    enabled: boolean;
-    color: string;
-    opacity: number;
-  };
+  name: string;
+  description: string;
+  font: ThemeFont;
+  background: ThemeBackground;
+  text: ThemeText;
+  footer: ThemeFooter;
+  layout: ThemeLayout;
+}
+
+export interface ThemesData {
+  version: number;
+  themes: Theme[];
 }
 
 // Message types for inter-script communication

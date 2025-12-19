@@ -84,6 +84,13 @@ body {
   min-height: 0;
 }
 
+.preview-wrapper {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
 #card-preview {
   background: white;
   border-radius: 12px;
@@ -120,9 +127,11 @@ body {
   gap: 10px;
   background: white;
   padding: 12px;
+  padding-bottom: 16px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   flex-shrink: 0;
+  overflow: visible;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -132,49 +141,222 @@ body {
   }
 }
 
-.selectors-row {
-  display: flex;
-  gap: 12px;
-}
-
-.selector-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-}
-
-.controls label {
+/* Theme picker */
+.picker-label {
+  display: block;
+  text-align: center;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   color: #86868b;
 }
 
-.controls select {
-  flex: 1;
-  padding: 6px 10px;
-  border: 1px solid #d2d2d7;
-  border-radius: 8px;
-  font-size: 13px;
-  background: white;
-  color: #1d1d1f;
-  cursor: pointer;
+@media (prefers-color-scheme: dark) {
+  .picker-label {
+    color: #98989d;
+  }
 }
 
-.controls select:focus {
-  outline: none;
-  border-color: var(--accent);
+.theme-picker {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: clip;
+  padding: 4px 5px 44px 5px;
+  margin: 0 -5px -40px -5px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.theme-picker::-webkit-scrollbar {
+  display: none;
+}
+
+.theme-swatch {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 400;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.theme-swatch:hover {
+  transform: scale(1.08);
+}
+
+.theme-swatch:active {
+  transform: scale(0.95);
+}
+
+.theme-swatch.active {
+  box-shadow: 0 0 0 2px var(--accent), 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Theme tooltip */
+.theme-swatch::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  padding: 6px 10px;
+  background: rgba(30, 30, 30, 0.95);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+.theme-swatch::before {
+  content: "";
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  border: 6px solid transparent;
+  border-bottom-color: rgba(30, 30, 30, 0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 100;
+}
+
+.theme-swatch:hover::after,
+.theme-swatch:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
 
 @media (prefers-color-scheme: dark) {
-  .controls label {
+  .theme-swatch {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .theme-swatch.active {
+    box-shadow: 0 0 0 2px var(--accent), 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .theme-swatch::after {
+    background: rgba(60, 60, 60, 0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .theme-swatch::before {
+    border-bottom-color: rgba(60, 60, 60, 0.98);
+  }
+}
+
+/* Format picker - collapsible overlay */
+.format-picker {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  background: rgba(229, 229, 234, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 3px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.format-picker.expanded {
+  gap: 4px;
+}
+
+.format-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 32px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #86868b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Collapsed state - hide non-active buttons */
+.format-picker:not(.expanded) .format-btn:not(.active) {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Expanded state - show all buttons */
+.format-picker.expanded .format-btn {
+  width: 40px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.format-btn:hover {
+  color: #1d1d1f;
+}
+
+.format-btn:active {
+  transform: scale(0.92);
+}
+
+.format-btn.active {
+  background: white;
+  color: #1d1d1f;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.format-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.format-btn svg rect {
+  transition: fill 0.15s ease;
+}
+
+.format-btn.active svg rect {
+  fill: currentColor;
+}
+
+@media (prefers-color-scheme: dark) {
+  .format-picker {
+    background: rgba(58, 58, 60, 0.95);
+  }
+
+  .format-btn {
     color: #98989d;
   }
 
-  .controls select {
-    background: #3a3a3c;
-    border-color: #48484a;
+  .format-btn:hover {
     color: #f5f5f7;
+  }
+
+  .format-btn.active {
+    background: #636366;
+    color: #f5f5f7;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 }
 

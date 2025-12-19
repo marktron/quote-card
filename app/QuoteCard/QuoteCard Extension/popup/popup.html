@@ -18,24 +18,31 @@
     </div>
 
     <div id="preview" class="hidden">
-      <div id="card-preview"></div>
+      <div class="preview-wrapper">
+        <div id="card-preview"></div>
+        <div class="format-picker" role="radiogroup" aria-label="Format">
+          <button type="button" class="format-btn" data-format="landscape" aria-label="Landscape" title="Landscape">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </button>
+          <button type="button" class="format-btn" data-format="square" aria-label="Square" title="Square">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </button>
+          <button type="button" class="format-btn" data-format="portrait" aria-label="Portrait" title="Portrait">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="6" y="3" width="12" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
       <div class="controls">
-        <div class="selectors-row">
-          <div class="selector-group">
-            <label data-i18n="themeLabel">Theme</label>
-            <select id="theme-select">
-              <!-- Populated dynamically from themes.json -->
-            </select>
-          </div>
-          <div class="selector-group">
-            <label data-i18n="formatLabel">Format</label>
-            <select id="aspect-select">
-              <option value="square" data-i18n="formatSquare">Square</option>
-              <option value="portrait" data-i18n="formatPortrait">Portrait</option>
-              <option value="landscape" data-i18n="formatLandscape">Landscape</option>
-            </select>
-          </div>
+        <label class="picker-label" data-i18n="themeLabel">Theme</label>
+        <div class="theme-picker" role="radiogroup" aria-label="Theme">
+          <!-- Populated dynamically from themes.json -->
         </div>
       </div>
 

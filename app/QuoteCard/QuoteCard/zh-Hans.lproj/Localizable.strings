@@ -15,3 +15,6 @@
 
 /* Button to open Safari extension preferences */
 "openSafariExtensions" = "打开 Safari 扩展";
+
+/* Note that app doesn't need to stay open */
+"noAppNeeded" = "你可以关闭此应用 - 扩展在 Safari 中独立运行。";

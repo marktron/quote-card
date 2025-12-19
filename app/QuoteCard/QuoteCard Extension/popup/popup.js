@@ -15,36 +15,69 @@ function localizeDocument() {
 // Initialize UI elements
 initUI();
 localizeDocument();
-const themeSelect = document.getElementById("theme-select");
-const aspectSelect = document.getElementById("aspect-select");
+const themePicker = document.querySelector(".theme-picker");
+const formatPicker = document.querySelector(".format-picker");
+const formatButtons = document.querySelectorAll(".format-btn");
 const copyBtn = document.getElementById("copy-btn");
 const saveBtn = document.getElementById("save-btn");
 const closeBtn = document.getElementById("close-btn");
 const retryBtn = document.getElementById("retry-btn");
+// Current state
+let currentThemeId = "scholarly";
+let currentAspectRatio = "portrait";
+let formatPickerExpanded = false;
 // State
 let currentRequest = null;
 let currentResult = null;
 let activeTabId = null;
+function getThemeBackground(theme) {
+    const bg = theme.background;
+    if (bg.type === "gradient" && bg.gradient) {
+        const colors = bg.gradient.colors;
+        const direction = bg.gradient.direction === "horizontal" ? "to right" : "to bottom";
+        return `linear-gradient(${direction}, ${colors.join(", ")})`;
+    }
+    if (bg.type === "image" && bg.image) {
+        const imageUrl = browser.runtime.getURL(bg.image.url);
+        return `url('${imageUrl}') center/cover, ${bg.color || "#888"}`;
+    }
+    return bg.color || "#888";
+}
+function setActiveTheme(themeId) {
+    currentThemeId = themeId;
+    themePicker.querySelectorAll(".theme-swatch").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.theme === themeId);
+    });
+}
 async function populateThemeSelector() {
     try {
         const response = await fetch(browser.runtime.getURL("shared/themes.json"));
         const data = await response.json();
-        themeSelect.innerHTML = "";
-        const themesArray = data.themes.sort((a, b) => a.name.localeCompare(b.name));
-        themesArray.forEach(theme => {
-            const option = document.createElement("option");
-            option.value = theme.id;
-            option.textContent = theme.name;
-            option.title = theme.description;
-            themeSelect.appendChild(option);
+        themePicker.innerHTML = "";
+        data.themes.forEach(theme => {
+            const swatch = document.createElement("button");
+            swatch.type = "button";
+            swatch.className = "theme-swatch";
+            swatch.dataset.theme = theme.id;
+            swatch.dataset.tooltip = theme.name;
+            swatch.setAttribute("aria-label", theme.name);
+            // Set background
+            swatch.style.background = getThemeBackground(theme);
+            // Set font styling for "Aa" text
+            swatch.style.fontFamily = `${theme.font.family}, ${theme.font.fallback}`;
+            swatch.style.fontWeight = String(theme.font.weight);
+            swatch.style.color = theme.text.color;
+            swatch.textContent = "Aa";
+            // Add click handler
+            swatch.addEventListener("click", () => {
+                setActiveTheme(theme.id);
+                void handleControlChange();
+            });
+            themePicker.appendChild(swatch);
         });
     }
     catch (error) {
         console.error("Failed to load themes:", error);
-        const option = document.createElement("option");
-        option.value = "scholarly";
-        option.textContent = "Scholarly";
-        themeSelect.appendChild(option);
     }
 }
 async function callNativeRenderer(request) {
@@ -137,22 +170,41 @@ async function saveImage() {
         return true;
     }, 2500);
 }
+function setActiveFormat(format) {
+    currentAspectRatio = format;
+    formatButtons.forEach(btn => {
+        const btnFormat = btn.dataset.format;
+        btn.classList.toggle("active", btnFormat === format);
+    });
+}
+function expandFormatPicker() {
+    formatPickerExpanded = true;
+    formatPicker.classList.add("expanded");
+}
+function collapseFormatPicker() {
+    formatPickerExpanded = false;
+    formatPicker.classList.remove("expanded");
+}
 async function handleControlChange() {
     if (!currentRequest)
         return;
     const prefs = {
-        themeId: themeSelect.value,
-        aspectRatio: aspectSelect.value
+        themeId: currentThemeId,
+        aspectRatio: currentAspectRatio
     };
     const settings = {
-        themeId: prefs.themeId,
-        aspectRatio: prefs.aspectRatio,
+        themeId: currentThemeId,
+        aspectRatio: currentAspectRatio,
         exportFormat: "jpeg",
         includeAttribution: true
     };
     currentRequest.settingsOverride = settings;
     await browser.storage.sync.set({ userPreferences: prefs });
     await renderQuoteCard(true);
+}
+async function handleFormatChange(format) {
+    setActiveFormat(format);
+    await handleControlChange();
 }
 async function init() {
     try {
@@ -202,8 +254,8 @@ async function init() {
             createdAt: Date.now(),
             settingsOverride: settings
         };
-        themeSelect.value = prefs.themeId;
-        aspectSelect.value = prefs.aspectRatio;
+        setActiveTheme(prefs.themeId);
+        setActiveFormat(prefs.aspectRatio);
         await renderQuoteCard();
     }
     catch (error) {
@@ -217,8 +269,30 @@ async function init() {
     }
 }
 // Event listeners - wrap async handlers to avoid unhandled promise warnings
-themeSelect.addEventListener("change", () => void handleControlChange());
-aspectSelect.addEventListener("change", () => void handleControlChange());
+// Format picker expand/collapse behavior
+formatButtons.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const format = btn.dataset.format;
+        if (!formatPickerExpanded) {
+            // Collapsed: expand the picker
+            expandFormatPicker();
+        }
+        else {
+            // Expanded: select format and collapse
+            if (format && format !== currentAspectRatio) {
+                void handleFormatChange(format);
+            }
+            collapseFormatPicker();
+        }
+    });
+});
+// Collapse format picker when clicking outside
+document.addEventListener("click", (e) => {
+    if (formatPickerExpanded && !formatPicker.contains(e.target)) {
+        collapseFormatPicker();
+    }
+});
 copyBtn.addEventListener("click", () => void copyToClipboard());
 saveBtn.addEventListener("click", () => void saveImage());
 closeBtn.addEventListener("click", () => window.close());

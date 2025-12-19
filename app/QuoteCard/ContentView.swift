@@ -65,6 +65,11 @@ struct ContentView: View {
                 }
             }
             .buttonStyle(.borderedProminent)
+
+            Text("noAppNeeded", tableName: "Localizable")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .padding(.top, 8)
         }
         .padding(40)
         .frame(width: 500, height: 500)

@@ -56,15 +56,16 @@ struct HTMLParser {
     }
 
     private func wrapWithStyles(_ html: String) -> String {
-        """
+        let boldWeight = min(theme.fontWeight + 200, 900)
+        return """
         <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display';
             font-size: \(baseFontSize)px;
             color: \(theme.text.color);
-            font-weight: 500;
+            font-weight: \(theme.fontWeight);
         }
-        strong, b { font-weight: 600; }
+        strong, b { font-weight: \(boldWeight); }
         em, i { font-style: italic; }
         p { margin: 0; padding: 0; line-height: 1.4; }
         ul, ol { margin: 0; padding-left: 2.5em; margin-left: 0; line-height: 1.6; }
@@ -112,6 +113,7 @@ struct HTMLParser {
             let newFont = createFont(
                 baseName: themeFontName,
                 size: baseFontSize,
+                weight: theme.fontWeight,
                 isBold: traits.contains(.bold),
                 isItalic: traits.contains(.italic)
             )
@@ -128,25 +130,70 @@ struct HTMLParser {
             .trimmingCharacters(in: .whitespaces) ?? "SFProDisplay"
     }
 
-    private func createFont(baseName: String, size: CGFloat, isBold: Bool, isItalic: Bool) -> NSFont {
-        if isBold && isItalic {
-            if let font = NSFont(name: "\(baseName)-BoldItalic", size: size) {
-                return font
-            }
-            if let font = NSFont(name: "\(baseName)-Bold", size: size) {
-                return NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
-            }
-        } else if isBold {
-            if let font = NSFont(name: "\(baseName)-Bold", size: size) ??
-                          NSFont(name: "\(baseName)-Semibold", size: size) {
-                return font
-            }
-        } else if isItalic {
-            if let font = NSFont(name: "\(baseName)-Italic", size: size) {
-                return NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
+    private func createFont(baseName: String, size: CGFloat, weight: Int, isBold: Bool, isItalic: Bool) -> NSFont {
+        // Convert numeric weight to NSFont.Weight
+        let nsWeight = nsFontWeight(from: isBold ? min(weight + 200, 900) : weight)
+
+        // Handle system fonts that require special loading
+        if let systemFont = createSystemFont(baseName: baseName, size: size, weight: nsWeight) {
+            return systemFont
+        }
+
+        // Try to load the font and apply weight via font descriptor
+        if let baseFont = NSFont(name: baseName, size: size) {
+            let descriptor = baseFont.fontDescriptor.addingAttributes([
+                .traits: [NSFontDescriptor.TraitKey.weight: nsWeight]
+            ])
+            if let weightedFont = NSFont(descriptor: descriptor, size: size) {
+                if isItalic {
+                    return NSFontManager.shared.convert(weightedFont, toHaveTrait: .italicFontMask)
+                }
+                return weightedFont
             }
         }
 
-        return NSFont(name: baseName, size: size) ?? NSFont.systemFont(ofSize: size, weight: .medium)
+        // Fallback to system font with weight
+        return NSFont.systemFont(ofSize: size, weight: nsWeight)
+    }
+
+    private func createSystemFont(baseName: String, size: CGFloat, weight: NSFont.Weight) -> NSFont? {
+        let lowerName = baseName.lowercased().replacingOccurrences(of: " ", with: "")
+
+        // SF Pro Rounded
+        if lowerName.contains("sfprorounded") || lowerName.contains("sanfranciscorounded") {
+            let baseFont = NSFont.systemFont(ofSize: size, weight: weight)
+            if let descriptor = baseFont.fontDescriptor.withDesign(.rounded) {
+                return NSFont(descriptor: descriptor, size: size)
+            }
+        }
+
+        // SF Mono
+        if lowerName.contains("sfmono") || lowerName.contains("sanfranciscomono") {
+            let baseFont = NSFont.systemFont(ofSize: size, weight: weight)
+            if let descriptor = baseFont.fontDescriptor.withDesign(.monospaced) {
+                return NSFont(descriptor: descriptor, size: size)
+            }
+        }
+
+        // SF Pro / San Francisco (default system font)
+        if lowerName.contains("sfpro") || lowerName.contains("sanfrancisco") || lowerName == "sf" {
+            return NSFont.systemFont(ofSize: size, weight: weight)
+        }
+
+        return nil
+    }
+
+    private func nsFontWeight(from weight: Int) -> NSFont.Weight {
+        switch weight {
+        case ...199: return .ultraLight
+        case 200...299: return .thin
+        case 300...399: return .light
+        case 400...499: return .regular
+        case 500...599: return .medium
+        case 600...699: return .semibold
+        case 700...799: return .bold
+        case 800...899: return .heavy
+        default: return .black
+        }
     }
 }

@@ -190,7 +190,8 @@ struct QuoteCardView: View {
                 .modifier(GlowModifier(glow: theme.text.glow, scale: scale))
         } else {
             Text(text)
-                .font(customFont(size: baseFontSize, weight: .medium))
+                .font(customFont(size: baseFontSize))
+                .fontWeight(themeFontWeight)
                 .foregroundColor(textColor)
                 .minimumScaleFactor(0.2)
                 .lineLimit(nil)
@@ -217,7 +218,8 @@ struct QuoteCardView: View {
                 }
 
                 Text(title)
-                    .font(customFont(size: footerFontSize, weight: .regular))
+                    .font(customFont(size: footerFontSize))
+                    .fontWeight(themeFontWeight)
                     .foregroundColor(footerColor)
                     .opacity(Double(theme.footer?.opacity ?? 0.7))
                     .minimumScaleFactor(0.5)
@@ -283,11 +285,25 @@ struct QuoteCardView: View {
         return nil
     }
 
-    private func customFont(size: CGFloat, weight: Font.Weight) -> Font {
+    private func customFont(size: CGFloat) -> Font {
         let fontName = theme.fontFamily.split(separator: ",")
             .first?
             .trimmingCharacters(in: .whitespaces) ?? "SFProDisplay"
         return .custom(String(fontName), size: size)
+    }
+
+    private var themeFontWeight: Font.Weight {
+        switch theme.fontWeight {
+        case ...199: return .ultraLight
+        case 200...299: return .thin
+        case 300...399: return .light
+        case 400...499: return .regular
+        case 500...599: return .medium
+        case 600...699: return .semibold
+        case 700...799: return .bold
+        case 800...899: return .heavy
+        default: return .black
+        }
     }
 }
 

@@ -48,6 +48,7 @@ class ThemeRegistry {
                   let name = themeData["name"] as? String,
                   let fontData = themeData["font"] as? [String: Any],
                   let fontFamily = fontData["family"] as? String,
+                  let fontWeight = fontData["weight"] as? Int,
                   let backgroundData = themeData["background"] as? [String: Any],
                   let textData = themeData["text"] as? [String: Any],
                   let textColor = textData["color"] as? String,
@@ -109,6 +110,7 @@ class ThemeRegistry {
                 id: id,
                 name: name,
                 fontFamily: fontFamily,
+                fontWeight: fontWeight,
                 background: background,
                 text: Theme.TextStyle(
                     size: CGFloat(fontSize),
@@ -135,6 +137,7 @@ class ThemeRegistry {
             id: "soft-sand",
             name: "Soft Sand",
             fontFamily: "Inter",
+            fontWeight: 400,
             background: Theme.Background(type: "solid", color: "#F7F1E8", gradient: nil, image: nil),
             text: Theme.TextStyle(size: 40, color: "#171615", lineHeight: 1.35, maxWidth: "80%", glow: nil),
             padding: 64,
