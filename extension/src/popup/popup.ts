@@ -34,7 +34,7 @@ const closeBtn = document.getElementById("close-btn") as HTMLButtonElement;
 const retryBtn = document.getElementById("retry-btn") as HTMLButtonElement;
 
 // Current state
-let currentThemeId = "scholarly";
+let currentThemeId = "minimalist";
 let currentAspectRatio: AspectRatio = "portrait";
 let formatPickerExpanded = false;
 
@@ -42,6 +42,9 @@ let formatPickerExpanded = false;
 let currentRequest: RenderRequest | null = null;
 let currentResult: RenderResult | null = null;
 let activeTabId: number | null = null;
+let allThemesUnlocked = false;
+let themesData: Theme[] = [];
+let currentThemeIsLocked = false;
 
 function getThemeBackground(theme: Theme): string {
   const bg = theme.background;
@@ -67,19 +70,91 @@ function setActiveTheme(themeId: string): void {
   });
 }
 
+function isThemeUnlocked(theme: Theme): boolean {
+  return theme.free || allThemesUnlocked;
+}
+
+async function checkPurchaseStatus(): Promise<void> {
+  try {
+    // Check purchase status via native messaging directly
+    const response = await browser.runtime.sendNativeMessage(
+      "application.id", // Safari ignores this, uses the containing app
+      { type: "CHECK_PURCHASE_STATUS" }
+    );
+    if (response?.allThemesUnlocked !== undefined) {
+      allThemesUnlocked = response.allThemesUnlocked;
+      // Cache in storage for faster subsequent checks
+      await browser.storage.local.set({ allThemesUnlocked });
+    }
+  } catch {
+    // Fall back to cached status
+    const storage = await browser.storage.local.get(["allThemesUnlocked"]);
+    if (storage.allThemesUnlocked) {
+      allThemesUnlocked = true;
+    }
+  }
+}
+
+function updateButtonState(): void {
+  const actionsContainer = document.querySelector(".actions") as HTMLElement;
+  if (!actionsContainer) return;
+
+  if (currentThemeIsLocked) {
+    // Hide normal buttons, show unlock button
+    copyBtn.classList.add("hidden");
+    saveBtn.classList.add("hidden");
+
+    // Add unlock button if not already there
+    let unlockBtn = document.getElementById("unlock-btn") as HTMLButtonElement;
+    if (!unlockBtn) {
+      unlockBtn = document.createElement("button");
+      unlockBtn.id = "unlock-btn";
+      unlockBtn.className = "btn btn-primary unlock-btn";
+      unlockBtn.innerHTML = '🔓 Unlock All Themes';
+      unlockBtn.addEventListener("click", () => {
+        openQuoteCardApp();
+      });
+      actionsContainer.appendChild(unlockBtn);
+    }
+    unlockBtn.classList.remove("hidden");
+  } else {
+    // Show normal buttons, hide unlock button
+    copyBtn.classList.remove("hidden");
+    saveBtn.classList.remove("hidden");
+
+    const unlockBtn = document.getElementById("unlock-btn");
+    if (unlockBtn) {
+      unlockBtn.classList.add("hidden");
+    }
+  }
+}
+
+function openQuoteCardApp(): void {
+  window.open("quotecard://unlock", "_self");
+}
+
 async function populateThemeSelector(): Promise<void> {
   try {
     const response = await fetch(browser.runtime.getURL("shared/themes.json"));
     const data: ThemesData = await response.json();
 
+    themesData = data.themes;
     themePicker.innerHTML = "";
 
+    // Use original order from themes.json
     data.themes.forEach(theme => {
       const swatch = document.createElement("button");
       swatch.type = "button";
       swatch.className = "theme-swatch";
       swatch.dataset.theme = theme.id;
-      swatch.dataset.tooltip = theme.name;
+
+      const isLocked = !isThemeUnlocked(theme);
+      if (isLocked) {
+        swatch.classList.add("locked");
+        swatch.dataset.tooltip = `${theme.name} (Locked)`;
+      } else {
+        swatch.dataset.tooltip = theme.name;
+      }
       swatch.setAttribute("aria-label", theme.name);
 
       // Set background
@@ -89,11 +164,19 @@ async function populateThemeSelector(): Promise<void> {
       swatch.style.fontFamily = `${theme.font.family}, ${theme.font.fallback}`;
       swatch.style.fontWeight = String(theme.font.weight);
       swatch.style.color = theme.text.color;
-      swatch.textContent = "Aa";
 
-      // Add click handler
+      // Add lock icon for locked themes, "Aa" for unlocked
+      if (isLocked) {
+        swatch.innerHTML = '<span class="lock-icon">🔒</span>';
+      } else {
+        swatch.textContent = "Aa";
+      }
+
+      // Add click handler - allow selecting locked themes but track state
       swatch.addEventListener("click", () => {
+        currentThemeIsLocked = !isThemeUnlocked(theme);
         setActiveTheme(theme.id);
+        updateButtonState();
         void handleControlChange();
       });
 
@@ -139,13 +222,22 @@ async function renderQuoteCard(isRerender = false): Promise<void> {
       return;
     }
 
-    const img = document.createElement("img");
-    img.src = result.dataUrl;
-    img.alt = "Quote card preview";
-
     const cardPreview = getCardPreview();
     cardPreview.innerHTML = "";
-    cardPreview.appendChild(img);
+
+    if (currentThemeIsLocked) {
+      // Use background-image div to prevent right-click saving
+      const previewDiv = document.createElement("div");
+      previewDiv.className = "preview-image-locked";
+      previewDiv.style.backgroundImage = `url(${result.dataUrl})`;
+      cardPreview.appendChild(previewDiv);
+    } else {
+      // Normal img element for unlocked themes
+      const img = document.createElement("img");
+      img.src = result.dataUrl;
+      img.alt = "Quote card preview";
+      cardPreview.appendChild(img);
+    }
 
     setState("preview");
   } catch (error) {
@@ -266,19 +358,31 @@ async function init(): Promise<void> {
   try {
     setState("loading");
 
+    // Check purchase status FIRST, before populating themes
+    await checkPurchaseStatus();
     await populateThemeSelector();
 
-    const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-    if (!tab?.id) {
-      setState("error", browser.i18n.getMessage("errorTabAccess") || "Could not access current tab");
-      return;
+    // Check if opened from context menu (tab ID stored in session storage)
+    let tabId: number;
+    const sessionData = await browser.storage.session.get(["contextMenuTabId"]);
+    if (sessionData.contextMenuTabId) {
+      tabId = sessionData.contextMenuTabId as number;
+      // Clear it so it's not reused
+      await browser.storage.session.remove("contextMenuTabId");
+    } else {
+      // Normal popup - get active tab
+      const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+      if (!tab?.id) {
+        setState("error", browser.i18n.getMessage("errorTabAccess") || "Could not access current tab");
+        return;
+      }
+      tabId = tab.id;
     }
+    activeTabId = tabId;
 
-    activeTabId = tab.id;
-
-    let selectionResp;
+    let selectionResp: { text?: string; html?: string; sourceTitle?: string; sourceUrl?: string; faviconUrl?: string } | undefined;
     try {
-      selectionResp = await browser.tabs.sendMessage(tab.id, {
+      selectionResp = await browser.tabs.sendMessage(tabId, {
         type: "REQUEST_SELECTION"
       });
     } catch (error) {
@@ -289,16 +393,22 @@ async function init(): Promise<void> {
       throw error;
     }
 
-    if (!selectionResp || !selectionResp.text) {
+    if (!selectionResp?.text) {
       setState("empty");
       return;
     }
 
     const storage = await browser.storage.sync.get(["userPreferences"]);
     const prefs = storage.userPreferences || {
-      themeId: "scholarly",
+      themeId: "minimalist",
       aspectRatio: "portrait"
     };
+
+    // If selected theme is locked, fall back to minimalist
+    const selectedTheme = themesData.find(t => t.id === prefs.themeId);
+    if (selectedTheme && !isThemeUnlocked(selectedTheme)) {
+      prefs.themeId = "minimalist";
+    }
 
     const settings: Partial<RenderSettings> = {
       themeId: prefs.themeId as string,

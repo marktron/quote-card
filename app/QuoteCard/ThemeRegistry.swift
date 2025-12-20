@@ -32,6 +32,14 @@ class ThemeRegistry {
         return Array(themes.values)
     }
 
+    func freeThemeCount() -> Int {
+        return themes.values.filter { $0.isFree }.count
+    }
+
+    func paidThemeCount() -> Int {
+        return themes.values.filter { !$0.isFree }.count
+    }
+
     private func loadThemes() {
         // Load themes from shared JSON file
         guard let url = Bundle.main.url(forResource: "themes", withExtension: "json", subdirectory: "shared"),
@@ -106,6 +114,9 @@ class ThemeRegistry {
                 )
             }
 
+            // Parse free status (defaults to false if not specified)
+            let isFree = themeData["free"] as? Bool ?? false
+
             let theme = Theme(
                 id: id,
                 name: name,
@@ -124,7 +135,8 @@ class ThemeRegistry {
                     enabled: footerEnabled,
                     color: footerColor,
                     opacity: footerOpacity
-                )
+                ),
+                isFree: isFree
             )
 
             themes[id] = theme
@@ -132,18 +144,19 @@ class ThemeRegistry {
     }
 
     private func loadFallbackTheme() {
-        // Fallback to Soft Sand if JSON loading fails
-        let softSand = Theme(
-            id: "soft-sand",
-            name: "Soft Sand",
-            fontFamily: "Inter",
+        // Fallback to Minimalist if JSON loading fails (free theme)
+        let minimalist = Theme(
+            id: "minimalist",
+            name: "Minimalist",
+            fontFamily: "Optima",
             fontWeight: 400,
-            background: Theme.Background(type: "solid", color: "#F7F1E8", gradient: nil, image: nil),
-            text: Theme.TextStyle(size: 40, color: "#171615", lineHeight: 1.35, maxWidth: "80%", glow: nil),
-            padding: 64,
-            footer: Theme.Footer(enabled: true, color: "#6F6254", opacity: 0.75)
+            background: Theme.Background(type: "solid", color: "#F1F5F9", gradient: nil, image: nil),
+            text: Theme.TextStyle(size: 34, color: "#1D293D", lineHeight: 1.4, maxWidth: "80%", glow: nil),
+            padding: 80,
+            footer: Theme.Footer(enabled: true, color: "#1D293D", opacity: 0.66),
+            isFree: true
         )
-        themes["soft-sand"] = softSand
+        themes["minimalist"] = minimalist
     }
 
     private func loadThemeFromFile(_ filename: String) {

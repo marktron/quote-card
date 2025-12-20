@@ -25,27 +25,23 @@ function createContextMenu(): void {
 }
 
 /**
- * Handle context menu item click - opens the popup
+ * Handle context menu item click - opens the popup in a new window
+ * We always use the window approach because browser.action.openPopup()
+ * silently fails when the toolbar button isn't visible in Safari
  */
 browser.contextMenus.onClicked.addListener(
   (info: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) => {
     if (info.menuItemId !== CONTEXT_MENU_ID) return;
     if (!tab?.id) return;
 
-    // Open the popup programmatically
-    // Note: In Safari, we use browser.action.openPopup() if available,
-    // otherwise we open the popup in a new window
-    if (typeof browser.action?.openPopup === "function") {
-      void browser.action.openPopup();
-    } else {
-      // Fallback: open popup.html in a new popup window
-      void browser.windows.create({
-        url: browser.runtime.getURL("popup/popup.html"),
-        type: "popup",
-        width: 420,
-        height: 600
-      });
-    }
+    // Store the tab ID so the popup can access it
+    void browser.storage.session.set({ contextMenuTabId: tab.id });
+
+    // Open popup.html in a new tab instead (Safari doesn't support popup windows well)
+    void browser.tabs.create({
+      url: browser.runtime.getURL("popup/popup.html"),
+      active: true
+    });
   }
 );
 

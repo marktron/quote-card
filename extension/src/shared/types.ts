@@ -102,6 +102,7 @@ export interface Theme {
   id: string;
   name: string;
   description: string;
+  free: boolean;
   font: ThemeFont;
   background: ThemeBackground;
   text: ThemeText;
@@ -123,7 +124,9 @@ export type MessageType =
   | "COPY_REQUEST"
   | "COPY_REQUEST_RELAY"
   | "SAVE_REQUEST_RELAY"
-  | "CONTEXT_MENU_CLICKED";
+  | "CONTEXT_MENU_CLICKED"
+  | "CHECK_PURCHASE_STATUS"
+  | "OPEN_HOST_APP";
 
 export interface BaseMessage {
   type: MessageType;

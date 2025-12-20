@@ -64,6 +64,7 @@ struct Theme: Codable {
     let text: TextStyle
     let padding: CGFloat
     let footer: Footer?
+    let isFree: Bool
 
     struct Background: Codable {
         let type: String?

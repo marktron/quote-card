@@ -23,13 +23,16 @@ const saveBtn = document.getElementById("save-btn");
 const closeBtn = document.getElementById("close-btn");
 const retryBtn = document.getElementById("retry-btn");
 // Current state
-let currentThemeId = "scholarly";
+let currentThemeId = "minimalist";
 let currentAspectRatio = "portrait";
 let formatPickerExpanded = false;
 // State
 let currentRequest = null;
 let currentResult = null;
 let activeTabId = null;
+let allThemesUnlocked = false;
+let themesData = [];
+let currentThemeIsLocked = false;
 function getThemeBackground(theme) {
     const bg = theme.background;
     if (bg.type === "gradient" && bg.gradient) {
@@ -49,17 +52,83 @@ function setActiveTheme(themeId) {
         btn.classList.toggle("active", btn.dataset.theme === themeId);
     });
 }
+function isThemeUnlocked(theme) {
+    return theme.free || allThemesUnlocked;
+}
+async function checkPurchaseStatus() {
+    try {
+        // Check purchase status via native messaging directly
+        const response = await browser.runtime.sendNativeMessage("application.id", // Safari ignores this, uses the containing app
+        { type: "CHECK_PURCHASE_STATUS" });
+        if (response?.allThemesUnlocked !== undefined) {
+            allThemesUnlocked = response.allThemesUnlocked;
+            // Cache in storage for faster subsequent checks
+            await browser.storage.local.set({ allThemesUnlocked });
+        }
+    }
+    catch {
+        // Fall back to cached status
+        const storage = await browser.storage.local.get(["allThemesUnlocked"]);
+        if (storage.allThemesUnlocked) {
+            allThemesUnlocked = true;
+        }
+    }
+}
+function updateButtonState() {
+    const actionsContainer = document.querySelector(".actions");
+    if (!actionsContainer)
+        return;
+    if (currentThemeIsLocked) {
+        // Hide normal buttons, show unlock button
+        copyBtn.classList.add("hidden");
+        saveBtn.classList.add("hidden");
+        // Add unlock button if not already there
+        let unlockBtn = document.getElementById("unlock-btn");
+        if (!unlockBtn) {
+            unlockBtn = document.createElement("button");
+            unlockBtn.id = "unlock-btn";
+            unlockBtn.className = "btn btn-primary unlock-btn";
+            unlockBtn.innerHTML = '🔓 Unlock All Themes';
+            unlockBtn.addEventListener("click", () => {
+                openQuoteCardApp();
+            });
+            actionsContainer.appendChild(unlockBtn);
+        }
+        unlockBtn.classList.remove("hidden");
+    }
+    else {
+        // Show normal buttons, hide unlock button
+        copyBtn.classList.remove("hidden");
+        saveBtn.classList.remove("hidden");
+        const unlockBtn = document.getElementById("unlock-btn");
+        if (unlockBtn) {
+            unlockBtn.classList.add("hidden");
+        }
+    }
+}
+function openQuoteCardApp() {
+    window.open("quotecard://unlock", "_self");
+}
 async function populateThemeSelector() {
     try {
         const response = await fetch(browser.runtime.getURL("shared/themes.json"));
         const data = await response.json();
+        themesData = data.themes;
         themePicker.innerHTML = "";
+        // Use original order from themes.json
         data.themes.forEach(theme => {
             const swatch = document.createElement("button");
             swatch.type = "button";
             swatch.className = "theme-swatch";
             swatch.dataset.theme = theme.id;
-            swatch.dataset.tooltip = theme.name;
+            const isLocked = !isThemeUnlocked(theme);
+            if (isLocked) {
+                swatch.classList.add("locked");
+                swatch.dataset.tooltip = `${theme.name} (Locked)`;
+            }
+            else {
+                swatch.dataset.tooltip = theme.name;
+            }
             swatch.setAttribute("aria-label", theme.name);
             // Set background
             swatch.style.background = getThemeBackground(theme);
@@ -67,10 +136,18 @@ async function populateThemeSelector() {
             swatch.style.fontFamily = `${theme.font.family}, ${theme.font.fallback}`;
             swatch.style.fontWeight = String(theme.font.weight);
             swatch.style.color = theme.text.color;
-            swatch.textContent = "Aa";
-            // Add click handler
+            // Add lock icon for locked themes, "Aa" for unlocked
+            if (isLocked) {
+                swatch.innerHTML = '<span class="lock-icon">🔒</span>';
+            }
+            else {
+                swatch.textContent = "Aa";
+            }
+            // Add click handler - allow selecting locked themes but track state
             swatch.addEventListener("click", () => {
+                currentThemeIsLocked = !isThemeUnlocked(theme);
                 setActiveTheme(theme.id);
+                updateButtonState();
                 void handleControlChange();
             });
             themePicker.appendChild(swatch);
@@ -108,12 +185,22 @@ async function renderQuoteCard(isRerender = false) {
             setState("error", result.errorMessage || browser.i18n.getMessage("errorRenderFailed") || "Failed to render quote card");
             return;
         }
-        const img = document.createElement("img");
-        img.src = result.dataUrl;
-        img.alt = "Quote card preview";
         const cardPreview = getCardPreview();
         cardPreview.innerHTML = "";
-        cardPreview.appendChild(img);
+        if (currentThemeIsLocked) {
+            // Use background-image div to prevent right-click saving
+            const previewDiv = document.createElement("div");
+            previewDiv.className = "preview-image-locked";
+            previewDiv.style.backgroundImage = `url(${result.dataUrl})`;
+            cardPreview.appendChild(previewDiv);
+        }
+        else {
+            // Normal img element for unlocked themes
+            const img = document.createElement("img");
+            img.src = result.dataUrl;
+            img.alt = "Quote card preview";
+            cardPreview.appendChild(img);
+        }
         setState("preview");
     }
     catch (error) {
@@ -209,16 +296,30 @@ async function handleFormatChange(format) {
 async function init() {
     try {
         setState("loading");
+        // Check purchase status FIRST, before populating themes
+        await checkPurchaseStatus();
         await populateThemeSelector();
-        const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-        if (!tab?.id) {
-            setState("error", browser.i18n.getMessage("errorTabAccess") || "Could not access current tab");
-            return;
+        // Check if opened from context menu (tab ID stored in session storage)
+        let tabId;
+        const sessionData = await browser.storage.session.get(["contextMenuTabId"]);
+        if (sessionData.contextMenuTabId) {
+            tabId = sessionData.contextMenuTabId;
+            // Clear it so it's not reused
+            await browser.storage.session.remove("contextMenuTabId");
         }
-        activeTabId = tab.id;
+        else {
+            // Normal popup - get active tab
+            const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+            if (!tab?.id) {
+                setState("error", browser.i18n.getMessage("errorTabAccess") || "Could not access current tab");
+                return;
+            }
+            tabId = tab.id;
+        }
+        activeTabId = tabId;
         let selectionResp;
         try {
-            selectionResp = await browser.tabs.sendMessage(tab.id, {
+            selectionResp = await browser.tabs.sendMessage(tabId, {
                 type: "REQUEST_SELECTION"
             });
         }
@@ -229,15 +330,20 @@ async function init() {
             }
             throw error;
         }
-        if (!selectionResp || !selectionResp.text) {
+        if (!selectionResp?.text) {
             setState("empty");
             return;
         }
         const storage = await browser.storage.sync.get(["userPreferences"]);
         const prefs = storage.userPreferences || {
-            themeId: "scholarly",
+            themeId: "minimalist",
             aspectRatio: "portrait"
         };
+        // If selected theme is locked, fall back to minimalist
+        const selectedTheme = themesData.find(t => t.id === prefs.themeId);
+        if (selectedTheme && !isThemeUnlocked(selectedTheme)) {
+            prefs.themeId = "minimalist";
+        }
         const settings = {
             themeId: prefs.themeId,
             aspectRatio: prefs.aspectRatio,

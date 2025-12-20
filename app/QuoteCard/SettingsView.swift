@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("defaultThemeId") private var defaultThemeId = "scholarly"
+    @AppStorage("defaultThemeId") private var defaultThemeId = "minimalist"
     @AppStorage("defaultAspectRatio") private var defaultAspectRatio = "portrait"
     @AppStorage("defaultExportFormat") private var defaultExportFormat = "png"
     @AppStorage("includeAttribution") private var includeAttribution = true
@@ -56,7 +56,7 @@ struct SettingsView: View {
             }
         }
         .formStyle(.grouped)
-        .frame(width: 450, height: 300)
+        .frame(width: 450, height: 250)
     }
 }
 

@@ -37,9 +37,20 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
             await handleRenderRequest(messageDict: messageDict, context: context)
         case "COPY_REQUEST":
             handleCopyRequest(messageDict: messageDict, context: context)
+        case "CHECK_PURCHASE_STATUS":
+            handleCheckPurchaseStatus(context: context)
         default:
             sendResponse(["error": "Unknown message type"], context: context)
         }
+    }
+
+    private func handleCheckPurchaseStatus(context: NSExtensionContext) {
+        // Read purchase status from shared App Group storage
+        let appGroupId = "group.com.quotecard.shared"
+        let sharedDefaults = UserDefaults(suiteName: appGroupId)
+        let unlocked = sharedDefaults?.bool(forKey: "allThemesUnlocked") ?? false
+
+        sendResponse(["allThemesUnlocked": unlocked], context: context)
     }
 
     private func handleCopyRequest(messageDict: [String: Any], context: NSExtensionContext) {

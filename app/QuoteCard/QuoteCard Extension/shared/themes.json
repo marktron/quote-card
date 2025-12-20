@@ -5,6 +5,7 @@
       "id": "minimalist",
       "name": "Minimalist",
       "description": "Border-only card on pure white; maximally restrained for decks and newsletters.",
+      "free": true,
       "font": {
         "family": "Optima",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -32,6 +33,7 @@
       "id": "minimalist-dark",
       "name": "Minimalist (Dark)",
       "description": "Border-only card on pure white; maximally restrained for decks and newsletters.",
+      "free": true,
       "font": {
         "family": "Optima",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -59,6 +61,7 @@
       "id": "vapor",
       "name": "Vapor",
       "description": "Soft vapor gradient with soft text.",
+      "free": false,
       "font": {
         "family": "Futura",
         "fallback": "SF Pro,-apple-system, BlinkMacSystemFont, sans-serif",
@@ -90,6 +93,7 @@
       "id": "soft-sand",
       "name": "Sand",
       "description": "Calm editorial beige with understated shadow. Ideal for essays and reflective quotes.",
+      "free": false,
       "font": {
         "family": "Optima",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -103,13 +107,18 @@
         }
       },
       "text": {
-        "color": "#44403B",
+        "color": "#37332F",
         "fontSize": 40,
-        "lineHeight": 1.35
+        "lineHeight": 1.35,
+        "glow": {
+          "color": "#FFF4E5",
+          "radius": 12,
+          "opacity": 0.3
+        }
       },
       "footer": {
         "enabled": true,
-        "color": "#44403B",
+        "color": "#37332F",
         "fontSize": 18,
         "opacity": 0.8
       },
@@ -121,6 +130,7 @@
       "id": "concrete",
       "name": "Concrete",
       "description": "Brutalist concrete texture with sharp edges.",
+      "free": false,
       "font": {
         "family": "Helvetica Neue",
         "fallback": "Helvetica, Arial, sans-serif",
@@ -152,6 +162,7 @@
       "id": "scholarly",
       "name": "Scholarly",
       "description": "Classic serif typography on clean background, ideal for academic and professional quotes.",
+      "free": false,
       "font": {
         "family": "Hoefler Text",
         "fallback": "Georgia, serif",
@@ -179,6 +190,7 @@
       "id": "forest",
       "name": "Forest",
       "description": "Deep forest green gradient evoking nature and growth, ideal for environmental and mindful quotes.",
+      "free": false,
       "font": {
         "family": "Gill Sans",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -210,6 +222,7 @@
       "id": "cardinal",
       "name": "Cardinal",
       "description": "Bold cardinal red with soft cream text, perfect for powerful and passionate quotes.",
+      "free": false,
       "font": {
         "family": "Gill Sans",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -237,6 +250,7 @@
       "id": "ocean-depths",
       "name": "Ocean",
       "description": "Deep blue gradient evoking calm ocean waters, perfect for serene and contemplative quotes.",
+      "free": false,
       "font": {
         "family": "Gill Sans",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -268,6 +282,7 @@
       "id": "sunshine",
       "name": "Sunshine",
       "description": "Bright and cheerful gradient perfect for uplifting quotes and positive messages.",
+      "free": false,
       "font": {
         "family": "Gill Sans",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -296,9 +311,79 @@
       }
     },
     {
+      "id": "marble",
+      "name": "Marble",
+      "description": "Marble texture with chiseled text.",
+      "free": false,
+      "font": {
+        "family": "Copperplate",
+        "fallback": "Copperplate, 'Copperplate Gothic Light', sans-serif",
+        "weight": 500
+      },
+      "background": {
+       "type": "image",
+        "color": "#fff",
+        "image": {
+          "url": "marble.jpg"
+        }
+      },
+      "text": {
+        "color": "#37342F",
+        "fontSize": 34,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#37342F",
+        "fontSize": 16,
+        "opacity": 0.8
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "space",
+      "name": "Space",
+      "description": "Galaxy-like background.",
+      "free": false,
+      "font": {
+        "family": "Futura",
+        "fallback": "SF Pro,-apple-system, BlinkMacSystemFont, sans-serif",
+        "weight": 500
+      },
+      "background": {
+        "type": "image",
+        "color": "#110A12",
+        "image": {
+          "url": "space.jpg"
+        }
+      },
+      "text": {
+        "color": "#ffffff",
+        "fontSize": 34,
+        "lineHeight": 1.3,
+        "glow": {
+          "color": "#110A12",
+          "radius": 12,
+          "opacity": 0.3
+        }
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#ffffff",
+        "fontSize": 16,
+        "opacity": 0.8
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
       "id": "mono-noir",
       "name": "Terminal",
       "description": "High-contrast dark card with monospaced feel; good for punchy, short lines.",
+      "free": false,
       "font": {
         "family": "SF Mono",
         "fallback": "Monaco, 'Courier New', monospace",
@@ -335,6 +420,7 @@
       "id": "newsprint-serif",
       "name": "Newsprint",
       "description": "Newspaper-style serif on off-white stock; great for long, thoughtful passages.",
+      "free": false,
       "font": {
         "family": "American Typewriter",
         "fallback": "Georgia, 'Times New Roman', serif",
@@ -366,6 +452,7 @@
       "id": "neon",
       "name": "Neon",
       "description": "Bold dark gradient with neon accent; tuned for social feeds and short, high-impact quotes.",
+      "free": false,
       "font": {
         "family": "SF Pro Rounded",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -402,6 +489,7 @@
       "id": "pastel",
       "name": "Y2K Pastel",
       "description": "Soft two-tone pastel panel with rounded corners; tuned for Instagram carousels.",
+      "free": false,
       "font": {
         "family": "SF Pro Rounded",
         "fallback": "-apple-system, BlinkMacSystemFont, sans-serif",
@@ -433,6 +521,7 @@
       "id": "chalkboard",
       "name": "Chalkboard",
       "description": "Dark chalkboard aesthetic with handwritten brush script, perfect for casual and creative quotes.",
+      "free": false,
       "font": {
         "family": "Bradley Hand",
         "fallback": "Marker Felt, cursive",
