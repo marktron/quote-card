@@ -14,14 +14,6 @@ struct ContentView: View {
     @State private var showingPurchaseError = false
     @State private var purchaseError = ""
 
-    private let themePreviewColors: [(bg: String, text: String)] = [
-        ("#048DD6", "#FFFFFF"),  // Ocean - white text
-        ("#9F0712", "#FFFFFF"),  // Cardinal - white text
-        ("#158545", "#FFFFFF"),  // Forest - white text
-        ("#FFDF20", "#806F00"),  // Sunshine - dark yellow text
-        ("#00D5BE", "#00665B")   // Neon/Teal - dark teal text
-    ]
-
     private var paidThemeCount: Int {
         // Try to load from extension bundle's shared folder
         if let extensionURL = Bundle.main.builtInPlugInsURL?
@@ -102,19 +94,8 @@ struct ContentView: View {
                             .tracking(0.5)
                             .frame(maxWidth: .infinity)
 
-                        // Theme preview strip
-                        HStack(spacing: 6) {
-                            ForEach(Array(themePreviewColors.enumerated()), id: \.offset) { _, colors in
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color(hex: colors.bg) ?? .gray)
-                                    .frame(width: 28, height: 28)
-                                    .overlay(
-                                        Text("Aa")
-                                            .font(.system(size: 10, weight: .medium))
-                                            .foregroundColor(Color(hex: colors.text) ?? .white)
-                                    )
-                            }
-                        }
+                        // Theme preview carousel
+                        ThemeCarousel()
 
                         Text("Get \(paidThemeCount) additional themes including gradients, textures, and unique styles.")
                             .font(.system(size: 13))
@@ -156,16 +137,63 @@ struct ContentView: View {
                     }
                     .padding(20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color(NSColor.controlBackgroundColor))
+                    .background(
+                        ZStack {
+                            Color(NSColor.controlBackgroundColor)
+                            // Subtle accent gradient overlay
+                            LinearGradient(
+                                colors: [
+                                    Color.accentColor.opacity(0.2),
+                                    Color.clear
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        }
+                    )
                     .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .strokeBorder(Color.accentColor.opacity(0.66), lineWidth: 3)
+                    )
                 } else {
-                    VStack(spacing: 8) {
-                        Image(systemName: "checkmark.seal.fill")
-                            .foregroundColor(.green)
-                            .font(.system(size: 24))
-                        Text("All themes unlocked")
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundColor(.secondary)
+                    VStack(spacing: 16) {
+                        Spacer()
+
+                        VStack(spacing: 6) {
+                            Image(systemName: "checkmark.seal.fill")
+                                .foregroundColor(.green)
+                                .font(.system(size: 24))
+                            Text("All themes unlocked")
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundColor(.secondary)
+                        }
+
+                        Spacer()
+
+                        VStack(spacing: 10) {
+                            Text("Enjoying QuoteCard?")
+                                .font(.system(size: 12, weight: .medium))
+                                .foregroundColor(.secondary)
+
+                            HStack(spacing: 12) {
+                                Button {
+                                    requestAppStoreReview()
+                                } label: {
+                                    Label("Rate", systemImage: "star.fill")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.bordered)
+                                .controlSize(.large)
+
+                                ShareLink(item: URL(string: "https://apps.apple.com/app/quotecard/id6745029622")!) {
+                                    Label("Share", systemImage: "square.and.arrow.up")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.bordered)
+                                .controlSize(.large)
+                            }
+                        }
                     }
                     .padding(20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -211,6 +239,10 @@ struct ContentView: View {
             showingPurchaseError = true
         }
     }
+
+    private func requestAppStoreReview() {
+        SKStoreReviewController.requestReview()
+    }
 }
 
 struct SetupStepRow: View {
@@ -230,6 +262,129 @@ struct SetupStepRow: View {
                 .font(.system(size: 13))
                 .foregroundColor(.primary)
                 .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+}
+
+// MARK: - Theme Carousel
+
+struct ThemeCarousel: View {
+    @State private var offset: CGFloat = 0
+
+    // Rich variety of theme colors from the premium collection
+    private let themes: [(bg: String, text: String, isGradient: Bool, gradientEnd: String?)] = [
+        ("#048DD6", "#FFFFFF", true, "#024A70"),   // Ocean gradient
+        ("#9F0712", "#FFE2E2", false, nil),         // Cardinal
+        ("#158545", "#DCFCE7", false, nil),         // Forest green
+        ("#FFDF20", "#432004", true, "#F0B100"),   // Sunshine gradient
+        ("#00D5BE", "#0F0D26", false, nil),         // Neon teal
+        ("#7365C1", "#CBFBF1", false, nil),         // Pastel purple
+        ("#646569", "#FFFFFF", false, nil),         // Concrete
+        ("#110A12", "#FFFFFF", false, nil),         // Space dark
+        ("#152602", "#9AE600", false, nil),         // Terminal
+        ("#003327", "#FEF3C6", false, nil),         // Chalkboard
+    ]
+
+    private let tileSize: CGFloat = 38
+    private let tileSpacing: CGFloat = 8
+    private var tileUnit: CGFloat { tileSize + tileSpacing }
+
+    var body: some View {
+        GeometryReader { geometry in
+            let visibleWidth = geometry.size.width
+            let totalWidth = CGFloat(themes.count) * tileUnit
+
+            HStack(spacing: tileSpacing) {
+                // Triple the tiles for seamless looping
+                ForEach(0..<3, id: \.self) { setIndex in
+                    ForEach(Array(themes.enumerated()), id: \.offset) { index, theme in
+                        ThemeTile(
+                            bgColor: theme.bg,
+                            textColor: theme.text,
+                            isGradient: theme.isGradient,
+                            gradientEnd: theme.gradientEnd,
+                            size: tileSize
+                        )
+                        .id("\(setIndex)-\(index)")
+                    }
+                }
+            }
+            .offset(x: offset + visibleWidth / 2 - tileUnit / 2)
+            .frame(width: visibleWidth, height: tileSize, alignment: .leading)
+            .clipped()
+            .mask(
+                // Edge fade mask - sized to match container
+                HStack(spacing: 0) {
+                    LinearGradient(
+                        stops: [
+                            .init(color: .clear, location: 0),
+                            .init(color: .black, location: 1)
+                        ],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                    .frame(width: 30)
+
+                    Rectangle().fill(.black)
+
+                    LinearGradient(
+                        stops: [
+                            .init(color: .black, location: 0),
+                            .init(color: .clear, location: 1)
+                        ],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                    .frame(width: 30)
+                }
+                .frame(width: visibleWidth)
+            )
+            .onAppear {
+                // Start from center set
+                offset = -totalWidth
+                startAnimation(totalWidth: totalWidth)
+            }
+        }
+        .frame(height: tileSize)
+        .clipped()
+    }
+
+    private func startAnimation(totalWidth: CGFloat) {
+        // Continuous slow scroll animation
+        withAnimation(.linear(duration: 20).repeatForever(autoreverses: false)) {
+            offset = -totalWidth * 2
+        }
+    }
+}
+
+struct ThemeTile: View {
+    let bgColor: String
+    let textColor: String
+    let isGradient: Bool
+    let gradientEnd: String?
+    let size: CGFloat
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 6)
+            .fill(backgroundFill)
+            .frame(width: size, height: size)
+            .overlay(
+                Text("Aa")
+                    .font(.system(size: size * 0.32, weight: .semibold))
+                    .foregroundColor(Color(hex: textColor) ?? .white)
+            )
+            .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 1)
+    }
+
+    private var backgroundFill: AnyShapeStyle {
+        if isGradient, let endColor = gradientEnd {
+            return AnyShapeStyle(LinearGradient(
+                colors: [Color(hex: bgColor) ?? .gray, Color(hex: endColor) ?? .gray],
+                startPoint: .top,
+                endPoint: .bottom
+            ))
+        } else {
+            return AnyShapeStyle(Color(hex: bgColor) ?? .gray)
         }
     }
 }
