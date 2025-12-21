@@ -64,7 +64,7 @@
     "description": "Empty state title"
   },
   "emptyStateDescription": {
-    "message": "Select some text on the page, then click the QuoteCard icon to create a beautiful quote card.",
+    "message": "Select some text on the page, then click the QuoteCard icon to continue.",
     "description": "Empty state instructions"
   },
   "closeButton": {

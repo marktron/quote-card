@@ -181,7 +181,7 @@ defaults delete com.markallen.QuoteCard AppleLanguages
 | `savingButton` | Saving... |
 | `savedButton` | Saved! |
 | `emptyStateTitle` | No Text Selected |
-| `emptyStateDescription` | Select some text on the page, then click the QuoteCard icon to create a beautiful quote card. |
+| `emptyStateDescription` | Select some text on the page, then click the QuoteCard icon to continue. |
 | `closeButton` | Close |
 | `errorConnection` | Please reload the page and try again |
 | `errorTabAccess` | Could not access current tab |
