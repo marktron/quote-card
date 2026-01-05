@@ -74,6 +74,22 @@ async function checkPurchaseStatus() {
         }
     }
 }
+async function getDefaultSettings() {
+    try {
+        const response = await browser.runtime.sendNativeMessage("application.id", { type: "GET_DEFAULT_SETTINGS" });
+        if (response?.themeId && response?.aspectRatio) {
+            return {
+                themeId: response.themeId,
+                aspectRatio: response.aspectRatio,
+                includeAttribution: response.includeAttribution ?? true
+            };
+        }
+    }
+    catch {
+        // Fall back to defaults
+    }
+    return { themeId: "minimalist", aspectRatio: "portrait", includeAttribution: true };
+}
 function updateButtonState() {
     const actionsContainer = document.querySelector(".actions");
     if (!actionsContainer)
@@ -282,8 +298,8 @@ async function handleControlChange() {
     const settings = {
         themeId: currentThemeId,
         aspectRatio: currentAspectRatio,
-        exportFormat: "jpeg",
-        includeAttribution: true
+        exportFormat: "png",
+        includeAttribution: currentRequest.settingsOverride?.includeAttribution ?? true
     };
     currentRequest.settingsOverride = settings;
     await browser.storage.sync.set({ userPreferences: prefs });
@@ -334,10 +350,13 @@ async function init() {
             setState("empty");
             return;
         }
+        // Get default settings from native app
+        const defaults = await getDefaultSettings();
+        // Check for user preferences (set when user changes theme/format in popup)
         const storage = await browser.storage.sync.get(["userPreferences"]);
         const prefs = storage.userPreferences || {
-            themeId: "minimalist",
-            aspectRatio: "portrait"
+            themeId: defaults.themeId,
+            aspectRatio: defaults.aspectRatio
         };
         // If selected theme is locked, fall back to minimalist
         const selectedTheme = themesData.find(t => t.id === prefs.themeId);
@@ -347,8 +366,8 @@ async function init() {
         const settings = {
             themeId: prefs.themeId,
             aspectRatio: prefs.aspectRatio,
-            exportFormat: "jpeg",
-            includeAttribution: true
+            exportFormat: "png",
+            includeAttribution: defaults.includeAttribution
         };
         currentRequest = {
             id: crypto.randomUUID(),

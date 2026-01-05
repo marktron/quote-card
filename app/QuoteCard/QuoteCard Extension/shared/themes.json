@@ -61,7 +61,7 @@
       "id": "vapor",
       "name": "Vapor",
       "description": "Soft vapor gradient with soft text.",
-      "free": false,
+      "free": true,
       "font": {
         "family": "Futura",
         "fallback": "SF Pro,-apple-system, BlinkMacSystemFont, sans-serif",
@@ -179,6 +179,71 @@
       "footer": {
         "enabled": true,
         "color": "#1D293D",
+        "fontSize": 16,
+        "opacity": 0.75
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "scholarly-dark",
+      "name": "Scholarly (Dark)",
+      "description": "Classic serif typography on clean background, ideal for academic and professional quotes.",
+      "free": false,
+      "font": {
+        "family": "Hoefler Text",
+        "fallback": "Georgia, serif",
+        "weight": 400
+      },
+      "background": {
+        "color": "#262626"
+      },
+      "text": {
+        "color": "#F5F5F5",
+        "fontSize": 40,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#F5F5F5",
+        "fontSize": 16,
+        "opacity": 0.75
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "mountains",
+      "name": "Mountains",
+      "description": "Black and white alpine landscape.",
+      "free": false,
+      "font": {
+        "family": "Georgia",
+        "fallback": "Georgia, serif",
+        "weight": 400
+      },
+      "background": {
+        "type": "image",
+        "color": "#252525",
+        "image": {
+          "url": "mountains.jpg"
+        }
+      },
+      "text": {
+        "color": "#ffffff",
+        "fontSize": 40,
+        "lineHeight": 1.4,
+        "glow": {
+          "color": "#252525",
+          "radius": 20,
+          "opacity": 0.5
+        }
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#ffffff",
         "fontSize": 16,
         "opacity": 0.75
       },
@@ -335,6 +400,38 @@
       "footer": {
         "enabled": true,
         "color": "#37342F",
+        "fontSize": 16,
+        "opacity": 0.8
+      },
+      "layout": {
+        "padding": 80
+      }
+    },
+    {
+      "id": "blueprint",
+      "name": "Blueprint",
+      "description": "Blueprint texture with monospaced text.",
+      "free": false,
+      "font": {
+        "family": "SF Mono",
+        "fallback": "Monaco, 'Courier New', monospace",
+        "weight": 500
+      },
+      "background": {
+       "type": "image",
+        "color": "#1C398E",
+        "image": {
+          "url": "blueprint.jpg"
+        }
+      },
+      "text": {
+        "color": "#8FB1FF",
+        "fontSize": 34,
+        "lineHeight": 1.4
+      },
+      "footer": {
+        "enabled": true,
+        "color": "#8FB1FF",
         "fontSize": 16,
         "opacity": 0.8
       },

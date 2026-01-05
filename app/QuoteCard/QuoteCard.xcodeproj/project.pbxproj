@@ -11,6 +11,8 @@
 		4D2DD1182EF6378100A82F0E /* QuoteCard.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4D2DD1162EF6378100A82F0E /* QuoteCard.storekit */; };
 		4D2DD11A2EF63E8300A82F0E /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2DD1192EF63E8300A82F0E /* PurchaseManager.swift */; };
 		4D2DD11F2EF70BDE00A82F0E /* space.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4D2DD11E2EF70BDE00A82F0E /* space.jpg */; };
+		4D2DD1212EFBAF0700A82F0E /* mountains.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4D2DD1202EFBAF0700A82F0E /* mountains.jpg */; };
+		4D40A1F62F0B6CA600752DE2 /* forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4D40A1F52F0B6CA600752DE2 /* forest.jpg */; };
 		4DEB95AE2EE204610024D618 /* QuoteCard Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4DEB95AD2EE204610024D618 /* QuoteCard Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4DEB95D62EE206630024D618 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB95D52EE206630024D618 /* ThemeRegistry.swift */; };
 		4DEB95D72EE206630024D618 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB95D02EE206630024D618 /* ContentView.swift */; };
@@ -38,14 +40,12 @@
 		4DEB99392EEB67FE0024D618 /* concrete.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990C2EEB67FE0024D618 /* concrete.jpg */; };
 		4DEB993B2EEB67FE0024D618 /* download-helper.html in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990E2EEB67FE0024D618 /* download-helper.html */; };
 		4DEB993C2EEB67FE0024D618 /* download-helper.js in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB990F2EEB67FE0024D618 /* download-helper.js */; };
-		4DEB993D2EEB67FE0024D618 /* forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99102EEB67FE0024D618 /* forest.jpg */; };
 		4DEB99402EEB67FE0024D618 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99132EEB67FE0024D618 /* manifest.json */; };
 		4DEB99412EEB67FE0024D618 /* marble.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99142EEB67FE0024D618 /* marble.jpg */; };
 		4DEB99432EEB67FE0024D618 /* neon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99162EEB67FE0024D618 /* neon.jpg */; };
 		4DEB99442EEB67FE0024D618 /* newsprint.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99172EEB67FE0024D618 /* newsprint.jpg */; };
 		4DEB99452EEB67FE0024D618 /* pastel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB99182EEB67FE0024D618 /* pastel.jpg */; };
 		4DEB99462EEB67FE0024D618 /* sand.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB991A2EEB67FE0024D618 /* sand.jpg */; };
-		4DEB99472EEB67FE0024D618 /* spectrum.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB991B2EEB67FE0024D618 /* spectrum.jpg */; };
 		4DEB99482EEB67FE0024D618 /* terminal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB991C2EEB67FE0024D618 /* terminal.jpg */; };
 		4DEB99492EEB67FE0024D618 /* vapor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DEB991D2EEB67FE0024D618 /* vapor.jpg */; };
 		4DEB994A2EEB67FE0024D618 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEB99192EEB67FE0024D618 /* SafariWebExtensionHandler.swift */; };
@@ -81,6 +81,8 @@
 		4D2DD1162EF6378100A82F0E /* QuoteCard.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = QuoteCard.storekit; sourceTree = "<group>"; };
 		4D2DD1192EF63E8300A82F0E /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		4D2DD11E2EF70BDE00A82F0E /* space.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = space.jpg; sourceTree = "<group>"; };
+		4D2DD1202EFBAF0700A82F0E /* mountains.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mountains.jpg; sourceTree = "<group>"; };
+		4D40A1F52F0B6CA600752DE2 /* forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = forest.jpg; sourceTree = "<group>"; };
 		4DEB95932EE2045F0024D618 /* QuoteCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuoteCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DEB95AD2EE204610024D618 /* QuoteCard Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "QuoteCard Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DEB95D02EE206630024D618 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,7 +111,6 @@
 		4DEB990C2EEB67FE0024D618 /* concrete.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = concrete.jpg; sourceTree = "<group>"; };
 		4DEB990E2EEB67FE0024D618 /* download-helper.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "download-helper.html"; sourceTree = "<group>"; };
 		4DEB990F2EEB67FE0024D618 /* download-helper.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "download-helper.js"; sourceTree = "<group>"; };
-		4DEB99102EEB67FE0024D618 /* forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = forest.jpg; sourceTree = "<group>"; };
 		4DEB99122EEB67FE0024D618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DEB99132EEB67FE0024D618 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		4DEB99142EEB67FE0024D618 /* marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = marble.jpg; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		4DEB99182EEB67FE0024D618 /* pastel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pastel.jpg; sourceTree = "<group>"; };
 		4DEB99192EEB67FE0024D618 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		4DEB991A2EEB67FE0024D618 /* sand.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sand.jpg; sourceTree = "<group>"; };
-		4DEB991B2EEB67FE0024D618 /* spectrum.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spectrum.jpg; sourceTree = "<group>"; };
 		4DEB991C2EEB67FE0024D618 /* terminal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = terminal.jpg; sourceTree = "<group>"; };
 		4DEB991D2EEB67FE0024D618 /* vapor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vapor.jpg; sourceTree = "<group>"; };
 		4DEB99CB2EEB69D90024D618 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
@@ -271,6 +271,7 @@
 		4DEB991E2EEB67FE0024D618 /* QuoteCard Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4D2DD1202EFBAF0700A82F0E /* mountains.jpg */,
 				4D2DD11E2EF70BDE00A82F0E /* space.jpg */,
 				4D2DD10F2EF62CB100A82F0E /* QuoteCard Extension.entitlements */,
 				4DEB99652EEB68040024D618 /* background */,
@@ -285,7 +286,7 @@
 				4DEB990C2EEB67FE0024D618 /* concrete.jpg */,
 				4DEB990E2EEB67FE0024D618 /* download-helper.html */,
 				4DEB990F2EEB67FE0024D618 /* download-helper.js */,
-				4DEB99102EEB67FE0024D618 /* forest.jpg */,
+				4D40A1F52F0B6CA600752DE2 /* forest.jpg */,
 				4DEB99122EEB67FE0024D618 /* Info.plist */,
 				4DEB99132EEB67FE0024D618 /* manifest.json */,
 				4DEB99142EEB67FE0024D618 /* marble.jpg */,
@@ -294,7 +295,6 @@
 				4DEB99182EEB67FE0024D618 /* pastel.jpg */,
 				4DEB99192EEB67FE0024D618 /* SafariWebExtensionHandler.swift */,
 				4DEB991A2EEB67FE0024D618 /* sand.jpg */,
-				4DEB991B2EEB67FE0024D618 /* spectrum.jpg */,
 				4DEB991C2EEB67FE0024D618 /* terminal.jpg */,
 				4DEB991D2EEB67FE0024D618 /* vapor.jpg */,
 			);
@@ -360,7 +360,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2610;
-				LastUpgradeCheck = 2610;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					4DEB95922EE2045F0024D618 = {
 						CreatedOnToolsVersion = 26.1.1;
@@ -415,6 +415,7 @@
 				4DEB99CC2EEB69DA0024D618 /* _locales in Resources */,
 				4DEB961E2EE25FE50024D618 /* shared in Resources */,
 				4D2DD1182EF6378100A82F0E /* QuoteCard.storekit in Resources */,
+				4D2DD1212EFBAF0700A82F0E /* mountains.jpg in Resources */,
 				4DEB96122EE21A340024D618 /* background in Resources */,
 				4DEB96132EE21A340024D618 /* icons in Resources */,
 				4DEB96152EE21A340024D618 /* popup in Resources */,
@@ -425,15 +426,14 @@
 				4DEB99392EEB67FE0024D618 /* concrete.jpg in Resources */,
 				4DEB993B2EEB67FE0024D618 /* download-helper.html in Resources */,
 				4DEB993C2EEB67FE0024D618 /* download-helper.js in Resources */,
-				4DEB993D2EEB67FE0024D618 /* forest.jpg in Resources */,
 				4DEB99402EEB67FE0024D618 /* manifest.json in Resources */,
 				4DEB99412EEB67FE0024D618 /* marble.jpg in Resources */,
 				4DEB99432EEB67FE0024D618 /* neon.jpg in Resources */,
 				4DEB99442EEB67FE0024D618 /* newsprint.jpg in Resources */,
 				4D2DD11F2EF70BDE00A82F0E /* space.jpg in Resources */,
 				4DEB99452EEB67FE0024D618 /* pastel.jpg in Resources */,
+				4D40A1F62F0B6CA600752DE2 /* forest.jpg in Resources */,
 				4DEB99462EEB67FE0024D618 /* sand.jpg in Resources */,
-				4DEB99472EEB67FE0024D618 /* spectrum.jpg in Resources */,
 				4DEB99482EEB67FE0024D618 /* terminal.jpg in Resources */,
 				4DEB99492EEB67FE0024D618 /* vapor.jpg in Resources */,
 			);
@@ -489,6 +489,7 @@
 				CODE_SIGN_ENTITLEMENTS = "QuoteCard Extension/QuoteCard Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = L84SR3DQS4;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -539,6 +540,7 @@
 				CODE_SIGN_ENTITLEMENTS = "QuoteCard Extension/QuoteCard Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = L84SR3DQS4;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -587,6 +589,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -616,6 +619,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = L84SR3DQS4;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -641,6 +645,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -651,6 +656,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -680,6 +686,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = L84SR3DQS4;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -698,6 +705,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -713,6 +721,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = L84SR3DQS4;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
@@ -777,6 +786,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = L84SR3DQS4;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;

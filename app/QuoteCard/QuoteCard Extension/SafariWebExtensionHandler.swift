@@ -39,6 +39,8 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
             handleCopyRequest(messageDict: messageDict, context: context)
         case "CHECK_PURCHASE_STATUS":
             handleCheckPurchaseStatus(context: context)
+        case "GET_DEFAULT_SETTINGS":
+            handleGetDefaultSettings(context: context)
         default:
             sendResponse(["error": "Unknown message type"], context: context)
         }
@@ -51,6 +53,19 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
         let unlocked = sharedDefaults?.bool(forKey: "allThemesUnlocked") ?? false
 
         sendResponse(["allThemesUnlocked": unlocked], context: context)
+    }
+
+    private func handleGetDefaultSettings(context: NSExtensionContext) {
+        let defaults = UserDefaults.standard
+        let themeId = defaults.string(forKey: "defaultThemeId") ?? "minimalist"
+        let aspectRatio = defaults.string(forKey: "defaultAspectRatio") ?? "portrait"
+        let includeAttribution = defaults.object(forKey: "includeAttribution") as? Bool ?? true
+
+        sendResponse([
+            "themeId": themeId,
+            "aspectRatio": aspectRatio,
+            "includeAttribution": includeAttribution
+        ], context: context)
     }
 
     private func handleCopyRequest(messageDict: [String: Any], context: NSExtensionContext) {

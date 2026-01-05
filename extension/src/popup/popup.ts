@@ -95,6 +95,25 @@ async function checkPurchaseStatus(): Promise<void> {
   }
 }
 
+async function getDefaultSettings(): Promise<{ themeId: string; aspectRatio: AspectRatio; includeAttribution: boolean }> {
+  try {
+    const response = await browser.runtime.sendNativeMessage(
+      "application.id",
+      { type: "GET_DEFAULT_SETTINGS" }
+    );
+    if (response?.themeId && response?.aspectRatio) {
+      return {
+        themeId: response.themeId,
+        aspectRatio: response.aspectRatio as AspectRatio,
+        includeAttribution: response.includeAttribution ?? true
+      };
+    }
+  } catch {
+    // Fall back to defaults
+  }
+  return { themeId: "minimalist", aspectRatio: "portrait", includeAttribution: true };
+}
+
 function updateButtonState(): void {
   const actionsContainer = document.querySelector(".actions") as HTMLElement;
   if (!actionsContainer) return;
@@ -339,8 +358,8 @@ async function handleControlChange(): Promise<void> {
   const settings: Partial<RenderSettings> = {
     themeId: currentThemeId,
     aspectRatio: currentAspectRatio,
-    exportFormat: "jpeg",
-    includeAttribution: true
+    exportFormat: "png",
+    includeAttribution: currentRequest.settingsOverride?.includeAttribution ?? true
   };
 
   currentRequest.settingsOverride = settings;
@@ -398,10 +417,14 @@ async function init(): Promise<void> {
       return;
     }
 
+    // Get default settings from native app
+    const defaults = await getDefaultSettings();
+
+    // Check for user preferences (set when user changes theme/format in popup)
     const storage = await browser.storage.sync.get(["userPreferences"]);
     const prefs = storage.userPreferences || {
-      themeId: "minimalist",
-      aspectRatio: "portrait"
+      themeId: defaults.themeId,
+      aspectRatio: defaults.aspectRatio
     };
 
     // If selected theme is locked, fall back to minimalist
@@ -413,8 +436,8 @@ async function init(): Promise<void> {
     const settings: Partial<RenderSettings> = {
       themeId: prefs.themeId as string,
       aspectRatio: prefs.aspectRatio as AspectRatio,
-      exportFormat: "jpeg",
-      includeAttribution: true
+      exportFormat: "png",
+      includeAttribution: defaults.includeAttribution
     };
 
     currentRequest = {

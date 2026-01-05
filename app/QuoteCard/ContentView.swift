@@ -38,11 +38,13 @@ struct ContentView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 40, height: 40)
+                        .accessibilityHidden(true)
 
                     Text("appName", tableName: "Localizable")
                         .font(.system(size: 32, weight: .bold, design: .default))
                         .offset(y: -4)
                 }
+                .accessibilityElement(children: .combine)
 
                 Text("appTagline", tableName: "Localizable")
                     .font(.system(size: 13))
@@ -62,7 +64,7 @@ struct ContentView: View {
                         .tracking(0.5)
                         .frame(maxWidth: .infinity)
 
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 16) {
                         SetupStepRow(number: "1", text: String(localized: "step1", table: "Localizable"))
                         SetupStepRow(number: "2", text: String(localized: "step2", table: "Localizable"))
                         SetupStepRow(number: "3", text: String(localized: "step3", table: "Localizable"))
@@ -78,6 +80,7 @@ struct ContentView: View {
                     }
                     .buttonStyle(.bordered)
                     .controlSize(.large)
+                    .accessibilityHint("Opens Safari extension settings")
                 }
                 .padding(20)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -87,7 +90,7 @@ struct ContentView: View {
                 // Right column: Upgrade
                 if !purchaseManager.allThemesUnlocked {
                     VStack(spacing: 18) {
-                        Text("Unlock All Themes")
+                        Text("Premium Themes")
                             .font(.system(size: 12, weight: .semibold))
                             .foregroundColor(.secondary)
                             .textCase(.uppercase)
@@ -96,6 +99,7 @@ struct ContentView: View {
 
                         // Theme preview carousel
                         ThemeCarousel()
+                            .accessibilityHidden(true)
 
                         Text("Get \(paidThemeCount) additional themes including gradients, textures, and unique styles.")
                             .font(.system(size: 13))
@@ -121,9 +125,11 @@ struct ContentView: View {
                             .buttonStyle(.borderedProminent)
                             .controlSize(.large)
                             .disabled(purchaseManager.purchaseInProgress)
+                            .accessibilityHint("Purchase all premium themes")
                         } else {
                             ProgressView()
                                 .controlSize(.small)
+                                .accessibilityLabel("Loading price")
                         }
 
                         Button("Restore Purchases") {
@@ -164,10 +170,12 @@ struct ContentView: View {
                             Image(systemName: "checkmark.seal.fill")
                                 .foregroundColor(.green)
                                 .font(.system(size: 24))
+                                .accessibilityHidden(true)
                             Text("All themes unlocked")
                                 .font(.system(size: 13, weight: .medium))
                                 .foregroundColor(.secondary)
                         }
+                        .accessibilityElement(children: .combine)
 
                         Spacer()
 
@@ -185,6 +193,7 @@ struct ContentView: View {
                                 }
                                 .buttonStyle(.bordered)
                                 .controlSize(.large)
+                                .accessibilityHint("Opens App Store rating dialog")
 
                                 ShareLink(item: URL(string: "https://apps.apple.com/app/quotecard/id6745029622")!) {
                                     Label("Share", systemImage: "square.and.arrow.up")
@@ -192,6 +201,7 @@ struct ContentView: View {
                                 }
                                 .buttonStyle(.bordered)
                                 .controlSize(.large)
+                                .accessibilityHint("Share QuoteCard with others")
                             }
                         }
                     }
@@ -263,12 +273,15 @@ struct SetupStepRow: View {
                 .foregroundColor(.primary)
                 .fixedSize(horizontal: false, vertical: true)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Step \(number): \(text)")
     }
 }
 
 // MARK: - Theme Carousel
 
 struct ThemeCarousel: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var offset: CGFloat = 0
 
     // Rich variety of theme colors from the premium collection
@@ -342,7 +355,9 @@ struct ThemeCarousel: View {
             .onAppear {
                 // Start from center set
                 offset = -totalWidth
-                startAnimation(totalWidth: totalWidth)
+                if !reduceMotion {
+                    startAnimation(totalWidth: totalWidth)
+                }
             }
         }
         .frame(height: tileSize)

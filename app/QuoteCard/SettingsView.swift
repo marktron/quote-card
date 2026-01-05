@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct SettingsView: View {
     @AppStorage("defaultThemeId") private var defaultThemeId = "minimalist"
     @AppStorage("defaultAspectRatio") private var defaultAspectRatio = "portrait"
-    @AppStorage("defaultExportFormat") private var defaultExportFormat = "png"
-    @AppStorage("includeAttribution") private var includeAttribution = true
+
+    @State private var extensionEnabled: Bool?
 
     var body: some View {
         Form {
@@ -27,14 +28,6 @@ struct SettingsView: View {
                     Text("Portrait (4:5)").tag("portrait")
                     Text("Landscape (16:9)").tag("landscape")
                 }
-
-                Picker("Export Format:", selection: $defaultExportFormat) {
-                    Text("PNG").tag("png")
-                    Text("JPEG").tag("jpeg")
-                }
-
-                Toggle("Include Attribution", isOn: $includeAttribution)
-                    .help("Show source title at the bottom of quote cards")
             }
 
             Section("About") {
@@ -48,15 +41,42 @@ struct SettingsView: View {
                 HStack {
                     Text("Extension Status:")
                     Spacer()
-                    Button("Open Safari Preferences") {
-                        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.Safari-Settings-Extensions")!)
+                    if let enabled = extensionEnabled {
+                        if enabled {
+                            Text("Enabled")
+                                .foregroundColor(.green)
+                        } else {
+                            Button("Enable in Safari") {
+                                SFSafariApplication.showPreferencesForExtension(withIdentifier: "com.markallen.QuoteCard.Extension")
+                            }
+                            .buttonStyle(.link)
+                        }
+                    } else {
+                        ProgressView()
+                            .scaleEffect(0.5)
                     }
-                    .buttonStyle(.link)
+                }
+
+                HStack {
+                    Text("Support:")
+                    Spacer()
+                    Link("markallen.io/quotecard", destination: URL(string: "https://markallen.io/quotecard")!)
                 }
             }
         }
         .formStyle(.grouped)
         .frame(width: 450, height: 250)
+        .onAppear {
+            checkExtensionState()
+        }
+    }
+
+    private func checkExtensionState() {
+        SFSafariExtensionManager.getStateOfSafariExtension(withIdentifier: "com.markallen.QuoteCard.Extension") { state, error in
+            DispatchQueue.main.async {
+                extensionEnabled = state?.isEnabled ?? false
+            }
+        }
     }
 }
 
